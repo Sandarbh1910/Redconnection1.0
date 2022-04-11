@@ -1,0 +1,407 @@
+@import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300&display=swap');
+
+::-webkit-scrollbar{
+    width: 5px;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+*{
+    box-sizing: border-box;
+    margin:0;
+    padding: 0;
+    font-family: 'Signika Negative', sans-serif;
+}
+
+a{
+    text-decoration: none;
+    color:black;
+}
+
+header{
+    text-align: center;
+    font-size: large;
+    font-weight: bolder;
+
+}
+
+.logo{
+    width:20px;
+    height: 20px;
+}
+
+
+
+
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    min-width: 50px;
+    width:50px;
+    height:100%;
+    min-height: 100vh;
+    background-color: #d94645;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    align-items: center;
+}
+
+.navlogo{width:80%;
+    object-fit: contain;
+    padding:2px;
+    margin-top: 5px;
+}
+
+.navlogo:hover{
+    border: 1px solid #f8e3e7;
+    border-radius: 50%;
+}
+
+.nav-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+.navtab{
+    width:100%;
+    font-size: small;
+    color:white;
+    margin-top:20px;
+}
+
+.navtab img{
+    width:80%;
+    border: 1px solid #f8e3e7;
+    border-radius: 50%;
+    object-fit: contain;
+    padding: 2px;
+}
+
+.user{
+    width:100%;
+    display: inline-block;
+}
+
+.prof-icon{
+    border-radius: 50%;
+    background-color: #f8e3e7;
+    width:80%;
+   
+    
+  
+}
+
+.user-drp-dwn{
+    display: none;
+    position: absolute;
+    left:10px;
+    bottom:40px;
+    min-width: 200px;
+    background-color: #f8e3e7;
+    list-style-type: none;
+    padding-top:10px;
+    padding-bottom: 10px;
+    border-radius: 5px;
+    z-index: 5;
+    opacity: 1;
+}
+
+.user-opt{
+    padding:5px;
+    z-index: 5;
+}
+
+.user-opt:hover{
+    background-color: #f0b7b7;
+}
+
+.user:hover img +.user-drp-dwn{
+    display: block;
+
+}
+
+
+
+.switch-interface{
+    display: none;
+}
+
+
+
+
+
+main{
+    position:relative;
+    left:50px;
+    width:calc(100% - 51px);
+    /* min-height:calc(100vh - 50px); */
+    height:100%;
+}
+
+
+.request-container{
+    list-style-type: decimal;
+    width:60%;
+    min-height:100%;
+    height: 100%;
+    min-width: 300px;
+    border-right: 1px solid #f8e3e7;
+    overflow-x: hidden;
+   
+}
+
+@media only screen and (max-width:801px)
+{
+    .request-container{
+        width:100%;
+    }
+
+    .info-container{margin:auto;
+    width:80%;}
+}
+
+.request{
+    margin-left:30px;
+    padding: 5px;
+    padding-top:10px;
+    padding-bottom:15px;
+    margin-top: 5px;
+}
+
+.request:hover{
+    background-color: #f8e3e7;
+}
+
+.request details summary{
+    font-weight: bolder;
+    color: #d94645;
+}
+
+.respond-btn{
+    padding:5px;
+    font-size: medium;
+    color:white;
+    background-color: #d94645;
+    border-radius: 3px;
+    float:right;
+    margin-right: 10px;
+}
+
+.info-container{
+    width:38%;
+    height: 100%;
+    min-width: 300px;
+    
+}
+
+.info-title{
+    text-align: center;
+}
+.bblist{
+    list-style-type: decimal;
+    width:100%;
+    height:50%;
+    min-height: 300px;
+    border: 1px solid #d94645;
+    padding:5px;
+    border-radius: 5px;
+    overflow-x: hidden;
+}
+
+.bank{
+    padding-top:10px;
+    padding-bottom:10px;
+}
+
+.bank:hover{
+    background-color: #f8e3e7;
+}
+
+.bstock,.bank-contact,.bank-address,.bstock div{
+    margin-left:10px;
+}
+
+th,td{
+    padding:5px;
+    text-align: center;
+}
+
+th{
+    color:#d94645;
+    
+}
+
+.bank-name{
+    color: #d94645;
+    font-size: large;
+}
+
+.event-list{
+    border: 1px solid #d94645;
+    height:35%;
+    min-height: 250px;
+    margin-top: 10px;
+    padding:5px;
+    border-radius: 5px;
+    list-style-type: none;
+    overflow-x: hidden;
+}
+.event{
+    padding-top:10px;
+    padding-bottom:10px;
+}
+
+.event:hover{
+    background-color: #f8e3e7;
+
+}
+
+.event details div{
+    margin-left:20px;
+}
+
+.event-name{
+    color: #d94645;
+    font-size: large;
+}
+
+.interface{
+    display:none;
+    min-height:80vh;
+    height: 95vh;
+}
+
+
+#donate-interface-radio:checked ~ #donate-interface{
+    
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    overflow-x: hidden;
+    
+}
+
+#seek-interface-radio:checked ~ #seek-interface{
+    display: flex;
+}
+
+#coupons-interface-radio:checked ~ #coupons-interface{
+    display: flex;
+}
+
+
+
+
+
+.seek-form{
+    margin:auto;
+    min-width: 250px;
+    width:50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.input-data{
+    padding:5px;
+    border-radius: 5px;
+    border:1px solid #e1e1e2;
+    margin-top:10px;
+    resize: none;
+    width:80%;
+}
+
+
+#blood-group{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width:80%;
+    padding:5px;
+    margin-top:10px;
+    flex-wrap: wrap;
+}
+
+#blood-group div{
+    width:100%;
+    margin-top:5px;
+}
+
+#group,#rh{
+    width:50%;
+    border-radius: 5px;
+    border:1px solid #e1e1e2;
+    float:right;
+}
+
+.hospital-address{
+    width:80%;
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: space-between;
+}
+
+.add{
+    width:48%;
+    min-width: 100px;
+}
+
+.date{
+    width:80%;
+    font-size: large;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.on{
+    width:50%;
+    min-width: 100px;
+}
+
+
+#seek-btn{
+    background-color: #d94645;
+color:white;
+font-size: large;
+border:0;
+border-radius: 3px;
+margin-top:20px;
+width:80%;
+margin-left:auto;
+margin-right:auto;
+padding:5px;
+}
+
+
+
+footer{
+    height:10vh ;
+    background-image: linear-gradient(to bottom,#f8e3e7,#ffffff);
+}
+
+.copyright{
+    padding:10px;
+    text-align: center;
+    color:#d94645;
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300&display=swap');
+
+
+
+*{
+    box-sizing: border-box;
+    margin:0;
+    padding: 0;
+    font-family: 'Signika Negative', sans-serif;
+}
+
+a{
+    text-decoration: none;
+    color:black;
+}
+
+header{
+    text-align: center;
+    font-size: larger;
+    font-weight: bolder;
+    padding:10px;
+}
+
+.logo{
+    width:20px;
+    height:20px;
+}
+
+main{
+    min-width:100vw;
+    min-height:80vh ;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+
+.uradio,.iradio{
+    display: none;
+}
+
+.institute-login,.user-login{
+    display:none;
+}
+
+
+
+.uradio:checked ~ .user-login{
+    display:block;
+}
+
+.iradio:checked ~ .institute-login{
+    display:block;
+}
+
+.user-login,.institute-login{
+    border:1px solid #e1e1e2;
+    padding:20px;
+    min-width: 250px;
+    width:25vw;
+}
+
+.user-login-form,.institute-login-form{
+  
+    display:flex;
+    flex-direction: column;
+    
+    
+    
+
+}
+
+.input-data{
+    padding:5px;
+    border-radius: 5px;
+    border:1px solid #e1e1e2;
+    margin-top:10px;
+    resize: none;
+}
+
+
+.ulogin-btn,.ilogin-btn{
+background-color: #d94645;
+color:white;
+font-size: large;
+border:0;
+border-radius: 3px;
+margin-top:20px;
+width:80%;
+margin-left:auto;
+margin-right:auto;
+padding:5px;
+}
+
+
+.institute-form p,.user-form p{
+    font-size:small;
+    padding:5px;
+    margin-top:5px;
+}
+
+
+.lbl{
+    margin:auto;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    cursor: pointer;
+    margin-top:10px;
+}
+
+.lbl img{
+    width:30px;
+    height:30px;
+
+}
+
+
+.signup-tab{
+    border:1px solid #e1e1e2;
+    padding:5px;
+    margin-top:20px;
+    min-width: 250px;
+    width:25vw;
+    text-align: center;
+    background-image: linear-gradient(to top,#f8e3e7,#ffffff);
+    color:#d94645;
+    border-radius: 2px;
+
+}
+
+.help-option{
+    margin-top:20px;
+    cursor: pointer;
+    
+}
+
+.help-option a{
+    color:blue;
+}
+
+footer{
+    height:10vh ;
+    background-image: linear-gradient(to bottom,#f8e3e7,#ffffff);
+}
+
+.copyright{
+    padding:10px;
+    text-align: center;
+    color:#d94645;
+}
+
