@@ -49,7 +49,7 @@ public class InstituteLoginServlet extends HttpServlet {
                      if(institute!=null)
                    { 
                        System.out.println("Security check complete");
-                       httpsess.setAttribute("logggedInstitute",institute);
+                       httpsess.setAttribute("loggedInstitute",institute);
                        response.sendRedirect("institute.jsp");
                        return;
                     

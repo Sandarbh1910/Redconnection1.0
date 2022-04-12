@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="CSS/signup.css">
     </head>
     <body>
+        <%@include file="message.jsp" %>
         <header> <a href="index.jsp"><img src="Icons/red chain img.png" class="logo" alt="">Red Connection</a></header>
         <main>
 

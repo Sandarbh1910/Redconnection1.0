@@ -6,6 +6,7 @@
 package com.mycompany.redconnection;
 
 import RCDAO.InstituteDAO;
+import RCHelper.Validations;
 import RCPOJO.InstitutePOJO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -34,7 +35,7 @@ public class InstituteSignupServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession httpsess=request.getSession();
-        try (PrintWriter out = response.getWriter()) {
+        try{
             /* TODO output your page here. You may use following sample code. */
            String name=request.getParameter("iname");
            String email=request.getParameter("iemail");
@@ -45,16 +46,52 @@ public class InstituteSignupServlet extends HttpServlet {
            String country=request.getParameter("icountry");
            String pincode=request.getParameter("ipincode");
            String address=request.getParameter("iaddress");
+           
+            if(!Validations.mobNoValidation(mob))
+          {
+              httpsess.setAttribute("message","Invalid mobile number!");
+              httpsess.setAttribute("dispcol","1");
+              response.sendRedirect("signup.jsp");
+               return;
+          }
+          
+          if(!Validations.passwordValidation(password))
+          {
+              httpsess.setAttribute("message","Weak Password! Password should contain atleast one uppercase,lowercase,digit,special character .");
+              httpsess.setAttribute("dispcol","1");
+              response.sendRedirect("signup.jsp");
+              return;
+          }
+          
+          
+          if(!Validations.emailValidation(email))
+          {
+               httpsess.setAttribute("message","Invalid email address!");
+              httpsess.setAttribute("dispcol","1");
+              response.sendRedirect("signup.jsp");
+               return;
+          }
+           
            if(!name.isEmpty()||!email.isEmpty()||!mob.isEmpty()||!password.isEmpty()||!address.isEmpty()||!pincode.isEmpty()||!city.isEmpty()||!country.isEmpty()||!state.isEmpty())
            {
+               if(Validations.passwordValidation(password))
+               {
                InstitutePOJO institute=new InstitutePOJO(name,email,mob,password,city,state,country,pincode,address);
-               boolean res=InstituteDAO.signupInstitute(institute);
-                if(res)
-              { httpsess.setAttribute("message","Registration successful");
+               String res=InstituteDAO.signupInstitute(institute);
+               if(res.equalsIgnoreCase("Registration successful"))
+              { httpsess.setAttribute("message",res);
               httpsess.setAttribute("dispcol","2");}
               
-              else{ httpsess.setAttribute("message","Could not register!");
+              else if(res.equalsIgnoreCase("Could not register! .Try again later"))
+              { httpsess.setAttribute("message",res);
               httpsess.setAttribute("dispcol","0");}
+              
+              else if(res.equalsIgnoreCase("Email/Mobile already exists!"))
+              {
+                   httpsess.setAttribute("message",res);
+              httpsess.setAttribute("dispcol","1");
+              }
+              
                
            }
            
@@ -64,8 +101,14 @@ public class InstituteSignupServlet extends HttpServlet {
                
            }
            
-           response.sendRedirect("signup.jsp");
+          
         }
+    }catch(NullPointerException ex){
+        httpsess.setAttribute("message","Please fill all the fields!");
+              httpsess.setAttribute("dispcol","0");
+        }
+        
+        finally{response.sendRedirect("signup.jsp");}
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -107,4 +150,5 @@ public class InstituteSignupServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    
 }

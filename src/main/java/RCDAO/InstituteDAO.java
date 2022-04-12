@@ -11,6 +11,7 @@ import RCPOJO.UserPOJO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 /**
  *
@@ -40,7 +41,7 @@ public class InstituteDAO {
     
     
     
-      public static boolean signupInstitute(InstitutePOJO institute)
+      public static String signupInstitute(InstitutePOJO institute)
     {
         try{
             
@@ -63,9 +64,49 @@ public class InstituteDAO {
             
             ps.executeUpdate();
             
+        }catch(SQLIntegrityConstraintViolationException ex)
+        {
+             return "Email/Mobile already exists!";
+        }
+        catch(Exception ex){ex.printStackTrace();
+        return "Could not register! .Try again later";}
+        
+        return "Registration successful";
+    }
+      
+      
+      
+      public static boolean getInstituteEmail(String email)
+    {
+        try{
+             Connection conn=DBConnection.getConnection();
+            PreparedStatement ps=conn.prepareStatement("select email from institutes where email=?");
+            
+            ps.setString(1,email);
+           
+             ResultSet rs=ps.executeQuery();
+             return rs.next();
+            
         }catch(Exception ex){ex.printStackTrace();
         return false;}
-        
-        return true;
+         
+    }
+      
+      
+      public static String createNewPassword(String email,String password)
+    {
+         try{
+             Connection conn=DBConnection.getConnection();
+            PreparedStatement ps=conn.prepareStatement("update institutes set password=? where email=? ");
+            
+            ps.setString(1,password);
+            ps.setString(2,email);
+           
+             ps.executeUpdate();
+             return "Password Change Successfuly";
+
+            
+        }catch(Exception ex){ex.printStackTrace();
+        return "Could not change password";}
     }
 }

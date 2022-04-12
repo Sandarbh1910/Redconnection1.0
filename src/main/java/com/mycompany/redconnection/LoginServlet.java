@@ -49,7 +49,7 @@ public class LoginServlet extends HttpServlet {
                      if(user!=null)
                    { 
                        System.out.println("Security check complete");
-                       httpsess.setAttribute("logggedUser",user);
+                       httpsess.setAttribute("loggedUser",user);
                        response.sendRedirect("user.jsp");
                        return;
                     

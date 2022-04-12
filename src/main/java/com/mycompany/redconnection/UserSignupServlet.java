@@ -6,6 +6,7 @@
 package com.mycompany.redconnection;
 
 import RCDAO.UserDAO;
+import RCHelper.Validations;
 import RCPOJO.UserPOJO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -34,7 +35,7 @@ public class UserSignupServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession httpsess=request.getSession();
-        try (PrintWriter out = response.getWriter()) {
+        try {
           String fname=request.getParameter("ufname");
           String lname=request.getParameter("ulname");
           String mob=request.getParameter("umob");
@@ -48,26 +49,64 @@ public class UserSignupServlet extends HttpServlet {
           String country=request.getParameter("ucountry");
           String pincode=request.getParameter("upincode");
           
+          if(!Validations.mobNoValidation(mob))
+          {
+              httpsess.setAttribute("message","Invalid mobile number!");
+              httpsess.setAttribute("dispcol","1");
+              response.sendRedirect("signup.jsp");
+               return;
+          }
+          
+          if(!Validations.passwordValidation(password))
+          {
+              httpsess.setAttribute("message","Weak Password! Password should contain atleast one uppercase,lowercase,digit,special character .");
+              httpsess.setAttribute("dispcol","1");
+              response.sendRedirect("signup.jsp");
+              return;
+          }
+          
+          
+          if(!Validations.emailValidation(email))
+          {
+               httpsess.setAttribute("message","Invalid email address!");
+              httpsess.setAttribute("dispcol","1");
+              response.sendRedirect("signup.jsp");
+               return;
+          }
+              
+          
           if(!fname.isEmpty()||!lname.isEmpty()||!mob.isEmpty()||!email.isEmpty()||!bgrp.isEmpty()||!rh.isEmpty()||!password.isEmpty()||!country.isEmpty())
           {
               //Not null
               UserPOJO user=new UserPOJO(fname,lname,mob,email,dob,bgrp+" "+rh,password,city,state,country,pincode);
-              boolean res=UserDAO.signupUser(user);
-              if(res)
-              { httpsess.setAttribute("message","Registration successful");
+              String res=UserDAO.signupUser(user);
+              if(res.equalsIgnoreCase("Registration successful"))
+              { httpsess.setAttribute("message",res);
               httpsess.setAttribute("dispcol","2");}
               
-              else{ httpsess.setAttribute("message","Could not register!");
+              else if(res.equalsIgnoreCase("Could not register! .Try again later"))
+              { httpsess.setAttribute("message",res);
               httpsess.setAttribute("dispcol","0");}
+              
+              else if(res.equalsIgnoreCase("Email/Mobile already exists!"))
+              {
+                   httpsess.setAttribute("message",res);
+              httpsess.setAttribute("dispcol","1");
+              }
           }
           
           else{
-              //Null
+              //Empty
               httpsess.setAttribute("message","Please fill all the fields!");
               httpsess.setAttribute("dispcol","0");
           }
-          response.sendRedirect("signup.jsp");
+          
+        }catch(NullPointerException ex){
+        httpsess.setAttribute("message","Please fill all the fields!");
+              httpsess.setAttribute("dispcol","0");
         }
+        
+        finally{response.sendRedirect("signup.jsp");}
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

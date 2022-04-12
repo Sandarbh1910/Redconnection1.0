@@ -10,6 +10,7 @@ import RCPOJO.UserPOJO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 /**
  *
@@ -18,7 +19,7 @@ import java.sql.ResultSet;
 public class UserDAO {
     
     
-    public static boolean signupUser(UserPOJO user)
+    public static String signupUser(UserPOJO user)
     {
         try{
             
@@ -40,10 +41,14 @@ public class UserDAO {
             
             ps.executeUpdate();
             
-        }catch(Exception ex){ex.printStackTrace();
-        return false;}
+        }catch(SQLIntegrityConstraintViolationException ex)
+        {
+             return "Email/Mobile already exists!";
+        }
+        catch(Exception ex){ex.printStackTrace();
+        return "Could not register! .Try again later";}
         
-        return true;
+        return "Registration successful";
     }
     
     
@@ -64,7 +69,40 @@ public class UserDAO {
          finally{return user;}
     }
     
+    public static boolean getUserEmail(String email)
+    {
+        try{
+             Connection conn=DBConnection.getConnection();
+            PreparedStatement ps=conn.prepareStatement("select email from users where email=?");
+            
+            ps.setString(1,email);
+           
+             ResultSet rs=ps.executeQuery();
+             return rs.next();
+
+            
+        }catch(Exception ex){ex.printStackTrace();
+        return false;}
+         
+    }
     
+    
+    public static String createNewPassword(String email,String password)
+    {
+         try{
+             Connection conn=DBConnection.getConnection();
+            PreparedStatement ps=conn.prepareStatement("update users set password=? where email=? ");
+            
+            ps.setString(1,password);
+            ps.setString(2,email);
+           
+             ps.executeUpdate();
+             return "Password Change Successfuly";
+
+            
+        }catch(Exception ex){ex.printStackTrace();
+        return "Could not change password";}
+    }
     
      
 }

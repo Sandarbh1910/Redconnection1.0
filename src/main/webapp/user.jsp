@@ -1,5 +1,18 @@
-
+<%@page import="RCPOJO.UserPOJO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    UserPOJO user=(UserPOJO)session.getAttribute("loggedUser");
+    if(user==null)
+    {
+        session.setAttribute("message", "Login Required!");
+    session.setAttribute("dispcol","1");
+    response.sendRedirect("login.jsp");
+    System.out.println("Login required on user page");
+    return;
+    }
+%>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +23,7 @@
     <link rel="stylesheet" href="CSS/user.css">
 </head>
 <body>
+    <%@include file="message.jsp" %>
     <header><img class="logo" src="Icons/red chain img.png" alt="">Red Connection</header>
     <nav>
          <img src="Icons/whitelink.png" alt="" class="navlogo">
@@ -19,12 +33,12 @@
             <label for="seek-interface-radio" class="navtab"><img src="Icons/seekblood.png" alt="">Seek</label>
             <label for="coupons-interface-radio" class="navtab"><img src="Icons/coupons.png" alt="">Coupons</label>
          </div>
-         <div class="user"><img src="profileicon.png" class="prof-icon" alt="">
+         <div class="user"><img src="Icons/profileicon.png" class="prof-icon" alt="">
             <ul class="user-drp-dwn">
                 <li class="user-opt">Profile</li>
-                <li class="user-opt">Change Password</li>
+                <li class="user-opt"><a href="passwordassistance.jsp">Change Password</a></li>
                 <hr>
-                <li class="user-opt"><a href="">Sign Out</a></li>
+                <li class="user-opt"><a href="LogoutServlet">Sign Out</a></li>
             </ul></div>
          
     </nav>
@@ -373,7 +387,39 @@
 
 <input type="radio" name="switch-interface" id="coupons-interface-radio" class="switch-interface">
 <div id="coupons-interface" class="interface" >
-coupons
+
+<div class="rewards">
+    <h2 class="reward-title">Rewards</h2>
+    <div class="reward-container">
+        <div class="reward-card">
+            <img src="http://source.unsplash.com/190x150/?doctors" alt="" class="reward-img">
+            <h4>Free Doctor Consultation</h4>
+            <div class="reward-buy-btn"><a href="" >3 Credits</a></div>
+        </div>
+        <div class="reward-card">
+            <img src="http://source.unsplash.com/190x150/?doctors" alt="" class="reward-img">
+            <h4>Free Blood Test</h4>
+            <div class="reward-buy-btn"><a href="" >5 Credits</a></div>
+        </div>
+        
+    </div>
+</div>
+<div class="my-rewards">
+    <h2 class="reward-title">My Vouchers</h2>
+    <div class="myreward-container">
+        
+        <div class="myreward-card">
+            <img src="http://source.unsplash.com/190x150/?doctors" alt="" class="reward-img">
+            <h4>Free Doctor Consultation</h4>
+            <details>
+                <summary>Voucher Code</summary>
+                <div class="voucher-code">1111</div>
+            </details>
+        </div>
+       
+    </div>
+    
+</div>
 </div>
 
 <footer> <div class="copyright">Copyright &copy;2022 Red Connections | Sandarbh Taran .All rights reserved.</div></footer>

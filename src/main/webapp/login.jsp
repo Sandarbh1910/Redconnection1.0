@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="CSS/login.css">
 </head>
 <body>
-    <header> <a href="index.html"><img src="Icons/red chain img.png" class="logo" alt="">Red Connection</a></header>
+    <%@include file="message.jsp" %>
+    <header> <a href="index.jsp"><img src="Icons/red chain img.png" class="logo" alt="">Red Connection</a></header>
     <main>
         <input type="radio" class="uradio" id="uradio" name="switch-inteface" checked>
         <form class="user-login"  action="LoginServlet" method="POST">
@@ -28,7 +29,7 @@
 
                 <details class="help-option">
                     <summary>Need help?</summary>
-                    <div><a href="">Forgot Password</a></div>
+                    <div><a href="passwordassistance.jsp">Forgot Password</a></div>
                     <div><a href="index.jsp#contact-us-page">Contact Us</a></div>
                 </details>
                
