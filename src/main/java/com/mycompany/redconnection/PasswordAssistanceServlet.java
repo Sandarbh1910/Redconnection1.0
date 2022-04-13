@@ -57,7 +57,7 @@ public class PasswordAssistanceServlet extends HttpServlet {
            httpsess.setAttribute("cpusertype", usertype);
             System.out.println("Passed empty email and user validation");
            boolean trueuser;
-           int otp=Helper.generateOTP();
+           int otp;
            if(usertype.equalsIgnoreCase("user"))
            {
                
@@ -66,7 +66,8 @@ public class PasswordAssistanceServlet extends HttpServlet {
                System.out.println(" user trueuser var "+trueuser);
                if(trueuser)
                {
-                   Mailer.sendMail("Password Change", "Hello :) \nYour requested OTP is : "+otp, email);
+                   httpsess.setAttribute("verificationfor","password");
+                   otp=Mailer.sendOTP("Password Change", email);
                    httpsess.setAttribute("otp",String.valueOf(otp));
                     httpsess.setAttribute("cpemail",email);
                    response.sendRedirect("verification.jsp");
@@ -79,7 +80,7 @@ public class PasswordAssistanceServlet extends HttpServlet {
                System.out.println("inst trueuser var "+trueuser);
                 if(trueuser)
                {
-                   Mailer.sendMail("Password Change", "Hello :) \nYour requested OTP is : "+otp, email);
+                   otp=Mailer.sendOTP("Password Change", email);
                    httpsess.setAttribute("cpemail",email);
                    httpsess.setAttribute("otp",String.valueOf(otp));
                    response.sendRedirect("verification.jsp");

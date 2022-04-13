@@ -36,6 +36,14 @@
         <servlet-name>CreatePasswordServlet</servlet-name>
         <servlet-class>com.mycompany.redconnection.CreatePasswordServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>VerifyDonorServlet</servlet-name>
+        <servlet-class>com.mycompany.redconnection.VerifyDonorServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BloodRequestServlet</servlet-name>
+        <servlet-class>com.mycompany.redconnection.BloodRequestServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RCContactServlet</servlet-name>
         <url-pattern>/RCContactServlet</url-pattern>
@@ -71,6 +79,14 @@
     <servlet-mapping>
         <servlet-name>CreatePasswordServlet</servlet-name>
         <url-pattern>/CreatePasswordServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VerifyDonorServlet</servlet-name>
+        <url-pattern>/VerifyDonorServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BloodRequestServlet</servlet-name>
+        <url-pattern>/BloodRequestServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -31,37 +31,43 @@ public class VerificationServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession httpsess=request.getSession();
+        HttpSession httpsess = request.getSession();
         try {
-            String otp=(String)httpsess.getAttribute("otp");
+            String otp = (String) httpsess.getAttribute("otp");
             httpsess.removeAttribute("otp");
-            String enteredotp=request.getParameter("enteredotp");
-            String email=request.getParameter("cpemail");
-            System.out.println("on veri serv cpemail "+email);
-            if(enteredotp==null||otp==null||email==null)
-            {
-                 httpsess.setAttribute("message","Service not available for the momment");
-               httpsess.setAttribute("dispcol","1");
-               response.sendRedirect("passwordassistance.jsp");
+            String enteredotp = request.getParameter("enteredotp");
+            String email = request.getParameter("cpemail");
+            System.out.println("on veri serv cpemail " + email);
+
+            
+
+            if (enteredotp == null || otp == null || email == null) {
+                httpsess.setAttribute("message", "Service not available for the momment");
+                httpsess.setAttribute("dispcol", "1");
+                 response.sendRedirect("passwordassistance.jsp");
+                    return;
+
             }
-            if(otp.equalsIgnoreCase(enteredotp))
-            {
-                System.out.println("Otp matched email "+email);
-               httpsess.setAttribute("cpemail", email);
-                response.sendRedirect("createpassword.jsp");
-                return;
+            if (otp.equalsIgnoreCase(enteredotp)) {
+                System.out.println("Otp matched email " + email);
+                httpsess.setAttribute("cpemail", email);
+
+                 response.sendRedirect("createpassword.jsp");
+                    return;
+
+            } else {
+
+                httpsess.setAttribute("message", "Invalid otp!");
+                httpsess.setAttribute("dispcol", "1");
+                response.sendRedirect("passwordassistance.jsp");
+                    return;
             }
-            else{
-                
-                httpsess.setAttribute("message","Invalid user!");
-               httpsess.setAttribute("dispcol","1");
-               response.sendRedirect("passwordassistance.jsp");
-            }
-        }catch(Exception ex){
-        ex.printStackTrace();
-        httpsess.setAttribute("message","Service not available for the momment");
-               httpsess.setAttribute("dispcol","1");
-               response.sendRedirect("passwordassistance.jsp");}
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            httpsess.setAttribute("message", "Service not available for the momment");
+            httpsess.setAttribute("dispcol", "1");
+            response.sendRedirect("passwordassistance.jsp");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
