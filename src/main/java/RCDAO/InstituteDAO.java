@@ -7,7 +7,6 @@ package RCDAO;
 
 import RCDBUTIL.DBConnection;
 import RCPOJO.InstitutePOJO;
-import RCPOJO.UserPOJO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,7 +29,7 @@ public class InstituteDAO {
              ResultSet rs=ps.executeQuery();
              if(rs.next())
              {
-                 institute=new InstitutePOJO(rs.getString("name"),rs.getString("email"),rs.getString("mob"),rs.getString("password"),rs.getString("city"),rs.getString("state"),rs.getString("country"),rs.getString("pincode"),rs.getString("address"));
+                 institute=new InstitutePOJO(rs.getString("name"),rs.getString("email"),rs.getString("mob"),rs.getString("password"),rs.getString("city"),rs.getString("state"),rs.getString("country"),rs.getString("pincode"),rs.getString("address"),rs.getString("institutetype"));
              }
         }catch(Exception ex){ex.printStackTrace();
         }
@@ -46,7 +45,7 @@ public class InstituteDAO {
         try{
             
             Connection conn=DBConnection.getConnection();
-            PreparedStatement ps=conn.prepareStatement("insert into institutes (name,email,mob,password,city,state,country,pincode,address) values (?,?,?,?,?,?,?,?,?)");
+            PreparedStatement ps=conn.prepareStatement("insert into institutes (name,email,mob,password,city,state,country,pincode,address,institutetype) values (?,?,?,?,?,?,?,?,?,?)");
             System.out.println(institute);
             ps.setString(1,institute.getName());
            
@@ -60,6 +59,7 @@ public class InstituteDAO {
             ps.setString(7, institute.getCountry());
             ps.setString(8, institute.getPincode());
             ps.setString(9, institute.getAddress());
+            ps.setString(10, institute.getInstype());
             
             
             ps.executeUpdate();
@@ -109,4 +109,45 @@ public class InstituteDAO {
         }catch(Exception ex){ex.printStackTrace();
         return "Could not change password";}
     }
+      
+      public static int getInstituteId(String email)
+      {
+          int id=-1;
+           try{
+             Connection conn=DBConnection.getConnection();
+            PreparedStatement ps=conn.prepareStatement("select id from institutes where email=? ");
+            
+            ps.setString(1,email);
+            
+           
+             ResultSet rs=ps.executeQuery();
+             rs.next();
+             id=rs.getInt("id");
+               System.out.println("id in ins dao "+id);
+             return id;
+
+            
+        }catch(Exception ex){ex.printStackTrace();
+        return id;}
+      }
+      
+      public static void removeInstitute(String email)
+      {
+           try{
+             Connection conn=DBConnection.getConnection();
+            PreparedStatement ps=conn.prepareStatement("delete from institutes where email=? ");
+            
+            ps.setString(1,email);
+            
+           
+             ps.executeUpdate();
+             
+             
+             
+             
+
+            
+        }catch(Exception ex){ex.printStackTrace();
+        }
+      }
 }

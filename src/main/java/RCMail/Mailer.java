@@ -20,8 +20,8 @@ import javax.mail.internet.MimeMessage;
  */
 public class Mailer {
     
-    final static String from="sandarbhoct2001@gmail.com";
-    final static String password="sandarbhDEMO@2021";
+    final static String from="demosandarbh@gmail.com";
+    final static String password="sandarbhDEMO@2022";
     
     
     public static boolean sendMail(String subject,String msg,String to)
@@ -73,7 +73,7 @@ public class Mailer {
         to[i]=new InternetAddress(address[i]);
     }
      MimeMessage message = new MimeMessage(session);    
-           message.addRecipients(Message.RecipientType.TO,to);    
+           message.addRecipients(Message.RecipientType.BCC,to);    
            message.setSubject(subject);    
            message.setText(msg);  
            
@@ -97,13 +97,14 @@ public class Mailer {
     prop.put("mail.smtp.auth","true");
     prop.put("mail.smtp.starttls.enable","true");
     Session session=Session.getInstance(prop,new javax.mail.Authenticator(){
+     @Override
      protected PasswordAuthentication getPasswordAuthentication() {    
            return new PasswordAuthentication(from,password);  
            }    
     });
    otp=Helper.generateOTP();
      MimeMessage message = new MimeMessage(session);    
-           message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));    
+           message.addRecipient(Message.RecipientType.BCC,new InternetAddress(to));    
            message.setSubject(subject);    
            message.setText("Hello :) \nYour requested OTP is : "+otp);  
            

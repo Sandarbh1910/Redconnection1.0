@@ -57,5 +57,12 @@ public class Validations {
     }
      
      
+     public static boolean validInstituteType(String instype)
+     {
+         if(instype.equalsIgnoreCase("ngo")||instype.equalsIgnoreCase("hospital")||instype.equalsIgnoreCase("bloodbank"))
+         {return true;}
+         return false;
+     }
+     
     
 }

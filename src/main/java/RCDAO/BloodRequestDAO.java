@@ -5,7 +5,9 @@ import RCDBUTIL.DBConnection;
 import RCPOJO.BloodRequestPOJO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.ArrayList;
 
 /**
  *
@@ -36,4 +38,101 @@ public class BloodRequestDAO {
         ex.printStackTrace(); return false;}
         return true;
     }
+    
+    public static ArrayList<BloodRequestPOJO> loadBloodRequestByCountry(String country)
+    {ArrayList<BloodRequestPOJO>breqlist=null;
+         try{
+            Connection conn=DBConnection.getConnection();
+            PreparedStatement ps=conn.prepareStatement("select * from bloodrequest where icountry=?");
+            ps.setString(1, country);
+         
+            ResultSet rs= ps.executeQuery();
+            BloodRequestPOJO breq=null;
+            breqlist=new ArrayList<BloodRequestPOJO>();
+            while(rs.next())
+            {
+                breq=new BloodRequestPOJO(rs.getString("requestno"),rs.getString("email"), rs.getString("mob"), rs.getString("institute"),rs.getString("icity"),rs.getString("istate"),rs.getString("icountry"), rs.getString("ipincode"),rs.getString("bloodgrp"),rs.getString("units"),rs.getString("date"),rs.getString("purpose"));
+                breqlist.add(breq);
+            }
+        }catch(SQLIntegrityConstraintViolationException ex){
+        ex.printStackTrace();return null;}
+        catch(Exception ex){
+        ex.printStackTrace(); return null;}
+        return breqlist;
+    }
+    
+    public static ArrayList<BloodRequestPOJO> loadBloodRequestByState(String state,String country)
+    { ArrayList<BloodRequestPOJO>breqlist=null;
+         try{
+            Connection conn=DBConnection.getConnection();
+            PreparedStatement ps=conn.prepareStatement("select * from bloodrequest where icountry=? and istate=?");
+            ps.setString(1, country);
+            ps.setString(2, state);
+         
+            ResultSet rs= ps.executeQuery();
+            BloodRequestPOJO breq=null;
+           breqlist=new ArrayList<BloodRequestPOJO>();
+            while(rs.next())
+            {
+                breq=new BloodRequestPOJO(rs.getString("requestno"),rs.getString("email"), rs.getString("mob"), rs.getString("institute"),rs.getString("icity"),rs.getString("istate"),rs.getString("icountry"), rs.getString("ipincode"),rs.getString("bloodgrp"),rs.getString("units"),rs.getString("date"),rs.getString("purpose"));
+                breqlist.add(breq);
+            }
+        }catch(SQLIntegrityConstraintViolationException ex){
+        ex.printStackTrace();return null;}
+        catch(Exception ex){
+        ex.printStackTrace(); return null;}
+        return breqlist;
+    }
+    
+    
+    public static ArrayList<BloodRequestPOJO> loadBloodRequestByCity(String city,String state,String country)
+    {ArrayList<BloodRequestPOJO>breqlist=null;
+         try{
+            Connection conn=DBConnection.getConnection();
+            PreparedStatement ps=conn.prepareStatement("select * from bloodrequest where icountry=? and istate=? and icity=?");
+            ps.setString(1, country);
+            ps.setString(2, state);
+            ps.setString(3, city);
+         
+            ResultSet rs= ps.executeQuery();
+            BloodRequestPOJO breq=null;
+            breqlist=new ArrayList<BloodRequestPOJO>();
+            while(rs.next())
+            {
+                breq=new BloodRequestPOJO(rs.getString("requestno"),rs.getString("email"), rs.getString("mob"), rs.getString("institute"),rs.getString("icity"),rs.getString("istate"),rs.getString("icountry"), rs.getString("ipincode"),rs.getString("bloodgrp"),rs.getString("units"),rs.getString("date"),rs.getString("purpose"));
+                breqlist.add(breq);
+            }
+        }catch(SQLIntegrityConstraintViolationException ex){
+        ex.printStackTrace();return null;}
+        catch(Exception ex){
+        ex.printStackTrace(); return null;}
+        return breqlist;
+    }
+    
+    
+     public static ArrayList<BloodRequestPOJO> loadBloodRequestByArea(String pincode)
+    {ArrayList<BloodRequestPOJO>breqlist=null;
+         try{
+            Connection conn=DBConnection.getConnection();
+            PreparedStatement ps=conn.prepareStatement("select * from bloodrequest where ipincode=?");
+            ps.setString(1, pincode);
+            
+         
+            ResultSet rs= ps.executeQuery();
+            BloodRequestPOJO breq=null;
+            breqlist=new ArrayList<BloodRequestPOJO>();
+            while(rs.next())
+            {
+                breq=new BloodRequestPOJO(rs.getString("requestno"),rs.getString("email"), rs.getString("mob"), rs.getString("institute"),rs.getString("icity"),rs.getString("istate"),rs.getString("icountry"), rs.getString("ipincode"),rs.getString("bloodgrp"),rs.getString("units"),rs.getString("date"),rs.getString("purpose"));
+                breqlist.add(breq);
+            }
+        }catch(SQLIntegrityConstraintViolationException ex){
+        ex.printStackTrace();return null;}
+        catch(Exception ex){
+        ex.printStackTrace(); return null;}
+        return breqlist;
+    }
+    
+    
+    
 }

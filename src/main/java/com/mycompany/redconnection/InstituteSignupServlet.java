@@ -5,6 +5,7 @@
  */
 package com.mycompany.redconnection;
 
+import RCDAO.BloodBankDAO;
 import RCDAO.InstituteDAO;
 import RCHelper.Validations;
 import RCPOJO.InstitutePOJO;
@@ -46,6 +47,23 @@ public class InstituteSignupServlet extends HttpServlet {
            String country=request.getParameter("icountry");
            String pincode=request.getParameter("ipincode");
            String address=request.getParameter("iaddress");
+           String instype=request.getParameter("instype");
+           
+           if(name==null||email==null||mob==null||password==null||city==null||state==null||country==null||pincode==null||pincode==null||address==null||instype==null)
+           {
+               httpsess.setAttribute("message","Error!");
+              httpsess.setAttribute("dispcol","0");
+              response.sendRedirect("signup.jsp");
+               return;
+           }
+           
+           if(!Validations.validInstituteType(instype))
+           {
+               httpsess.setAttribute("message","Invalid institute type!");
+              httpsess.setAttribute("dispcol","1");
+              response.sendRedirect("signup.jsp");
+               return;
+           }
            
             if(!Validations.mobNoValidation(mob))
           {
@@ -72,24 +90,41 @@ public class InstituteSignupServlet extends HttpServlet {
                return;
           }
            
-           if(!name.isEmpty()||!email.isEmpty()||!mob.isEmpty()||!password.isEmpty()||!address.isEmpty()||!pincode.isEmpty()||!city.isEmpty()||!country.isEmpty()||!state.isEmpty())
+           if(!name.isEmpty()||!email.isEmpty()||!mob.isEmpty()||!password.isEmpty()||!address.isEmpty()||!pincode.isEmpty()||!city.isEmpty()||!country.isEmpty()||!state.isEmpty()||!instype.isEmpty())
            {
                if(Validations.passwordValidation(password))
                {
-               InstitutePOJO institute=new InstitutePOJO(name,email,mob,password,city,state,country,pincode,address);
+               InstitutePOJO institute=new InstitutePOJO(name,email,mob,password,city,state,country,pincode,address,instype);
                String res=InstituteDAO.signupInstitute(institute);
+              
                if(res.equalsIgnoreCase("Registration successful"))
-              { httpsess.setAttribute("message",res);
-              httpsess.setAttribute("dispcol","2");}
+              { if(BloodBankDAO.createStock(InstituteDAO.getInstituteId(email)))
+              {
+                    httpsess.setAttribute("message",res);
+              httpsess.setAttribute("dispcol","2");
+              response.sendRedirect("signup.jsp");return;
+              }
+              
+              else{
+                  InstituteDAO.removeInstitute(email);
+                   httpsess.setAttribute("message","Could not register! .Try again later");
+              httpsess.setAttribute("dispcol","1");
+              response.sendRedirect("signup.jsp");return;
+              }
+                  
+                }
               
               else if(res.equalsIgnoreCase("Could not register! .Try again later"))
               { httpsess.setAttribute("message",res);
-              httpsess.setAttribute("dispcol","0");}
+              httpsess.setAttribute("dispcol","0");
+              response.sendRedirect("signup.jsp");return;}
               
               else if(res.equalsIgnoreCase("Email/Mobile already exists!"))
               {
                    httpsess.setAttribute("message",res);
               httpsess.setAttribute("dispcol","1");
+              response.sendRedirect("signup.jsp");
+              return;
               }
               
                
@@ -98,6 +133,8 @@ public class InstituteSignupServlet extends HttpServlet {
            else{
                httpsess.setAttribute("message","Please fill all the fields!");
               httpsess.setAttribute("dispcol","0");
+              response.sendRedirect("signup.jsp");
+              return;
                
            }
            
@@ -106,9 +143,11 @@ public class InstituteSignupServlet extends HttpServlet {
     }catch(NullPointerException ex){
         httpsess.setAttribute("message","Please fill all the fields!");
               httpsess.setAttribute("dispcol","0");
+              response.sendRedirect("signup.jsp");
+              return;
         }
         
-        finally{response.sendRedirect("signup.jsp");}
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

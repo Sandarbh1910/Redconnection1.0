@@ -218,6 +218,14 @@ main{
 .request details summary{
     font-weight: bolder;
     color: #d94645;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+
+.request details summary i{
+    color:#084a5e;
 }
 
 .respond-btn{
@@ -226,7 +234,7 @@ main{
     color:white;
     background-color: #d94645;
     border-radius: 3px;
-    float:right;
+    /*float:right;*/
     margin-right: 10px;
 }
 
@@ -254,6 +262,10 @@ main{
 .bank{
     padding-top:10px;
     padding-bottom:10px;
+}
+
+.bank-address,.bank-contact{
+    margin-top:5px
 }
 
 .bank:hover{

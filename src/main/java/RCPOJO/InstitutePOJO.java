@@ -19,10 +19,11 @@ public class InstitutePOJO {
     private String City;
     private String Country;
     private String pincode;
+    private String instype;
     
     
     
-    public InstitutePOJO(String name, String email, String mob, String password, String City, String State, String Country, String pincode ,String address) {
+    public InstitutePOJO(String name, String email, String mob, String password, String City, String State, String Country, String pincode ,String address,String instype) {
         this.name = name;
         this.email = email;
         this.mob = mob;
@@ -32,6 +33,15 @@ public class InstitutePOJO {
         this.City = City;
         this.Country = Country;
         this.pincode = pincode;
+        this.instype=instype;
+    }
+
+    public String getInstype() {
+        return instype;
+    }
+
+    public void setInstype(String instype) {
+        this.instype = instype;
     }
 
     public String getName() {

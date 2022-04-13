@@ -1,3 +1,8 @@
+<%@page import="RCDAO.BloodBankDAO"%>
+<%@page import="RCPOJO.BloodBankPOJO"%>
+<%@page import="RCDAO.BloodRequestDAO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="RCPOJO.BloodRequestPOJO"%>
 <%@page import="RCPOJO.UserPOJO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
@@ -10,6 +15,42 @@
     System.out.println("Login required on user page");
     return;
     }
+    ArrayList<BloodRequestPOJO>breqlist=null;
+    ArrayList<BloodBankPOJO>banklist=null;
+String region=request.getParameter("region");
+
+
+if(region==null||region.equalsIgnoreCase("country"))
+{
+    banklist=BloodBankDAO.loadBanksByCountry(user.getCountry());
+    breqlist=BloodRequestDAO.loadBloodRequestByCountry(user.getCountry());
+}
+
+else if(region.equalsIgnoreCase("state"))
+{
+    banklist=BloodBankDAO.loadBanksByState(user.getState(), user.getCountry());
+    breqlist=BloodRequestDAO.loadBloodRequestByState(user.getState(),user.getCountry());
+}
+
+else if(region.equalsIgnoreCase("city"))
+{
+    banklist=BloodBankDAO.loadBanksByCity(user.getCity(), user.getState(), user.getCountry());
+    breqlist=BloodRequestDAO.loadBloodRequestByCity(user.getCity(), user.getState(),user.getCountry());
+}
+
+else if(region.equalsIgnoreCase("area"))
+{
+    banklist=BloodBankDAO.loadBanksByArea(user.getPincode());
+    breqlist=BloodRequestDAO.loadBloodRequestByArea(user.getPincode());
+}
+
+else{
+     banklist=BloodBankDAO.loadBanksByState(user.getState(), user.getCountry());
+    breqlist=BloodRequestDAO.loadBloodRequestByCountry(user.getCountry());
+}
+
+
+
 %>
 
 
@@ -50,23 +91,30 @@
     <div class="request-container">
         <fieldset class="region-filter">
         <legend>Region</legend>
-        <a href="" class="country region">Country</a>
-        <a href="" class="state region">State</a>
-        <a href="" class="city region">City</a>
-         <a href="" class="area region">Area</a>
+        <a href="user.jsp?region=country" class="country region">Country</a>
+        <a href="user.jsp?region=state" class="state region">State</a>
+        <a href="user.jsp?region=city" class="city region">City</a>
+         <a href="user.jsp?region=area" class="area region">Area</a>
     </fieldset>
     <h3>Requests</h3>
 <ul class="request-list">
-    
-<li class="request">
+    <%
+        for(BloodRequestPOJO breq:breqlist)
+        {
+            %>
+    <li class="request">
     <details>
-        <summary>111001 <a href="" class="respond-btn">Respond</a></summary>
-        <div>Address</div>
-        <div>Units</div>
-        <div>Purpose</div>
+        <summary>Request id : <%=breq.getReqno()%> <i><%=breq.getIcity()+", "+breq.getIstate()+", "+breq.getIcountry()+"- "+breq.getIpincode()%></i><a href="" class="respond-btn">Respond</a></summary>
+        <div>Institute Address&nbsp;:&nbsp;<%=breq.getInstitute()+" "+breq.getIcity()+", "+breq.getIstate()+", "+breq.getIcountry()+"- "+breq.getIpincode()%> </div>
+        <div>Units&nbsp;:&nbsp;<%=breq.getUnits()%></div>
+        <div>Purpose&nbsp;:&nbsp;<%=breq.getPurpose()%></div>
 
     </details>
 </li>
+    <%
+        }
+    %>
+
 
 </ul>
 </div>
@@ -74,90 +122,39 @@
 <div class="info-container">
 <ul class="bblist">
     <h3 class="info-title">Blood Banks</h3>
-    <li class="bank">
+    <%
+        for(BloodBankPOJO b:banklist)
+        {
+            %>
+    
+    
+     <li class="bank">
         <details>
-            <summary class="bank-name">Red Cross</summary>
-            <div class="bank-address">Address</div>
-            <div class="bank-contact">Mobile</div>
+            <summary class="bank-name"><%=b.getName()%></summary>
+            <div class="bank-address"><b>Address&nbsp;:&nbsp;</b><i><%=b.getAddress()+", "+b.getCity()+", "+b.getState()+", "+b.getCountry()+"- "+b.getPincode()%></i></div>
+            <div class="bank-contact"><b>Email&nbsp;:&nbsp;</b><i><%=b.getEmail()%> </i></div>
+            <div class="bank-contact"><b>Contact&nbsp;:&nbsp;</b><i><%=b.getMob()%></i></div>
             <details class="bstock">
                 <summary>Stock</summary>
                 <table>
                     <th>Blood Group</th><th>Rh</th><th>Units</th>
-                    <tr><td>A</td><td>+ve</td> <td>1</td></tr>
-                    <tr><td>A</td><td>-ve</td> <td>2</td></tr>
-                    <tr><td>B</td><td>+ve</td> <td>3</td></tr>
-                    <tr><td>B</td><td>-ve</td> <td>4</td></tr>
-                    <tr><td>AB</td><td>+ve</td> <td>5</td></tr>
-                    <tr><td>AB</td><td>-ve</td> <td>6</td></tr>
-                    <tr><td>O</td><td>+ve</td> <td>7</td></tr>
-                    <tr><td>O</td><td>-ve</td> <td>8</td></tr>
+                    <tr><td>A</td><td>+ve</td> <td><%=b.getAp()%></td></tr>
+                    <tr><td>A</td><td>-ve</td> <td><%=b.getAn()%></td></tr>
+                    <tr><td>B</td><td>+ve</td> <td><%=b.getBp()%></td></tr>
+                    <tr><td>B</td><td>-ve</td> <td><%=b.getBn()%></td></tr>
+                    <tr><td>AB</td><td>+ve</td> <td><%=b.getAbp()%></td></tr>
+                    <tr><td>AB</td><td>-ve</td> <td><%=b.getAbn()%></td></tr>
+                    <tr><td>O</td><td>+ve</td> <td><%=b.getOp()%></td></tr>
+                    <tr><td>O</td><td>-ve</td> <td><%=b.getOn()%></td></tr>
                 </table>
             </details>
         </details>
     </li>
-    <li class="bank">
-        <details>
-            <summary class="bank-name">VCare Blood Bank</summary>
-            <div class="bank-address">Address</div>
-            <div class="bank-contact">Mobile</div>
-            <details class="bstock">
-                <summary>Stock</summary>
-                <table>
-                    <th>Blood Group</th><th>Rh</th><th>Units</th>
-                    <tr><td>A</td><td>+ve</td> <td>1</td></tr>
-                    <tr><td>A</td><td>-ve</td> <td>2</td></tr>
-                    <tr><td>B</td><td>+ve</td> <td>3</td></tr>
-                    <tr><td>B</td><td>-ve</td> <td>4</td></tr>
-                    <tr><td>AB</td><td>+ve</td> <td>5</td></tr>
-                    <tr><td>AB</td><td>-ve</td> <td>6</td></tr>
-                    <tr><td>O</td><td>+ve</td> <td>7</td></tr>
-                    <tr><td>O</td><td>-ve</td> <td>8</td></tr>
-                </table>
-            </details>
-        </details>
-    </li>
-    <li class="bank">
-        <details>
-            <summary class="bank-name">Red Life</summary>
-            <div class="bank-address">Address</div>
-            <div class="bank-contact">Mobile</div>
-            <details class="bstock">
-                <summary>Stock</summary>
-                <table>
-                    <th>Blood Group</th><th>Rh</th><th>Units</th>
-                    <tr><td>A</td><td>+ve</td> <td>1</td></tr>
-                    <tr><td>A</td><td>-ve</td> <td>2</td></tr>
-                    <tr><td>B</td><td>+ve</td> <td>3</td></tr>
-                    <tr><td>B</td><td>-ve</td> <td>4</td></tr>
-                    <tr><td>AB</td><td>+ve</td> <td>5</td></tr>
-                    <tr><td>AB</td><td>-ve</td> <td>6</td></tr>
-                    <tr><td>O</td><td>+ve</td> <td>7</td></tr>
-                    <tr><td>O</td><td>-ve</td> <td>8</td></tr>
-                </table>
-            </details>
-        </details>
-    </li>
-    <li class="bank">
-        <details>
-            <summary class="bank-name">Red Line</summary>
-            <div class="bank-address">Address</div>
-            <div class="bank-contact">Mobile</div>
-            <details class="bstock">
-                <summary>Stock</summary>
-                <table>
-                    <th>Blood Group</th><th>Rh</th><th>Units</th>
-                    <tr><td>A</td><td>+ve</td> <td>1</td></tr>
-                    <tr><td>A</td><td>-ve</td> <td>2</td></tr>
-                    <tr><td>B</td><td>+ve</td> <td>3</td></tr>
-                    <tr><td>B</td><td>-ve</td> <td>4</td></tr>
-                    <tr><td>AB</td><td>+ve</td> <td>5</td></tr>
-                    <tr><td>AB</td><td>-ve</td> <td>6</td></tr>
-                    <tr><td>O</td><td>+ve</td> <td>7</td></tr>
-                    <tr><td>O</td><td>-ve</td> <td>8</td></tr>
-                </table>
-            </details>
-        </details>
-    </li>
+    
+    <%
+        }
+    %>
+    
 </ul>
 <ul class="event-list">
     <h3 class="info-title">Events</h3>
