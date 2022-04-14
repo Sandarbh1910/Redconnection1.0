@@ -67,14 +67,14 @@ else{
     <%@include file="message.jsp" %>
     <header><img class="logo" src="Icons/red chain img.png" alt="">Red Connection</header>
     <nav>
-         <img src="Icons/whitelink.png" alt="" class="navlogo">
+         <img src="Icons/red chain img.png" alt="" class="navlogo">
          <div class="nav-container">
              
-            <label for="donate-interface-radio" class="navtab"><img src="Icons/donate.png" alt="">Donate</label>
-            <label for="seek-interface-radio" class="navtab"><img src="Icons/seekblood.png" alt="">Seek</label>
-            <label for="coupons-interface-radio" class="navtab"><img src="Icons/coupons.png" alt="">Coupons</label>
+            <label for="donate-interface-radio" class="navtab" title="Donate"><img src="Icons/donate.png" alt="">Donate</label>
+            <label for="seek-interface-radio" class="navtab" title="Request Blood"><img src="Icons/bloodsearchgrey.png" alt="">Seek</label>
+            <label for="coupons-interface-radio" class="navtab" title="Vouchers"><img src="Icons/coupon3.png" alt="">Coupons</label>
          </div>
-         <div class="user"><img src="Icons/profileicon.png" class="prof-icon" alt="">
+         <div class="user"><img src="Icons/usergrey.png" class="prof-icon" alt="">
             <ul class="user-drp-dwn">
                 <li class="user-opt">Profile</li>
                 <li class="user-opt"><a href="passwordassistance.jsp">Change Password</a></li>

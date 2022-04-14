@@ -43,7 +43,7 @@ nav{
     width:50px;
     height:100%;
     min-height: 100vh;
-    background-color: #d94645;
+    background-color: #fcfcfc;
     text-align: center;
     display: flex;
     justify-content: space-between;
@@ -78,7 +78,7 @@ nav{
 .navtab{
     width:100%;
     font-size: small;
-    color:white;
+    color:black;
     margin-top:20px;
 }
 
@@ -98,7 +98,7 @@ nav{
 
 .prof-icon{
     border-radius: 50%;
-    background-color: #f8e3e7;
+    background-color: white;
     width:80%;
    
     
@@ -111,7 +111,7 @@ nav{
     left:30px;
     bottom:40px;
     min-width: 200px;
-    background-color: #f8e3e7;
+    background-color: #fcfcfc;
     list-style-type: none;
     padding-top:10px;
     padding-bottom: 10px;
@@ -132,7 +132,7 @@ nav{
 
 
 .user-opt:hover{
-    background-color: #f0b7b7;
+    background-color: #e2e5e7;
 }
 
 .user:hover img +.user-drp-dwn{
@@ -187,10 +187,16 @@ main{
     align-items: center;
 }
 .region{
-    background-color: #084a5e;
-    color:white;
+    background-color: #e2e5e7;
+    color:black;
     padding:5px;
     border-radius:5px;
+}
+
+.region:hover{
+    background-color: #084a5e;
+    color:white;
+   
 }
 
 @media only screen and (max-width:801px)
@@ -212,7 +218,7 @@ main{
 }
 
 .request:hover{
-    background-color: #f8e3e7;
+    background-color: #fcfcfc;
 }
 
 .request details summary{
@@ -269,7 +275,7 @@ main{
 }
 
 .bank:hover{
-    background-color: #f8e3e7;
+    background-color: #fcfcfc;
 }
 
 .bstock,.bank-contact,.bank-address,.bstock div{
@@ -307,7 +313,7 @@ th{
 }
 
 .event:hover{
-    background-color: #f8e3e7;
+    background-color: #fcfcfc;
 
 }
 
@@ -520,7 +526,7 @@ padding:5px;
 footer{
     height:10vh ;
     z-index: 2;
-    background-image: linear-gradient(to bottom,#f8e3e7,#ffffff);
+    background-image: linear-gradient(to bottom,#e2e5e7,#fcfcfc);
 }
 
 .copyright{
