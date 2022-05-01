@@ -87,7 +87,8 @@ public class PasswordAssistanceServlet extends HttpServlet {
                    return;
                }
            }
-           
+           httpsess.setAttribute("message","No such user found!");
+                   httpsess.setAttribute("dispcol","1");
            response.sendRedirect("passwordassistance.jsp");
            
            

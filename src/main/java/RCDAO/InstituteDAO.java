@@ -29,7 +29,7 @@ public class InstituteDAO {
              ResultSet rs=ps.executeQuery();
              if(rs.next())
              {
-                 institute=new InstitutePOJO(rs.getString("name"),rs.getString("email"),rs.getString("mob"),rs.getString("password"),rs.getString("city"),rs.getString("state"),rs.getString("country"),rs.getString("pincode"),rs.getString("address"),rs.getString("institutetype"));
+                 institute=new InstitutePOJO(rs.getInt("id"),rs.getString("name"),rs.getString("email"),rs.getString("mob"),rs.getString("password"),rs.getString("city"),rs.getString("state"),rs.getString("country"),rs.getString("pincode"),rs.getString("address"),rs.getString("institutetype"));
              }
         }catch(Exception ex){ex.printStackTrace();
         }

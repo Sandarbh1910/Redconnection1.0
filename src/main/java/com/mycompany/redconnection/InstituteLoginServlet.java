@@ -48,9 +48,18 @@ public class InstituteLoginServlet extends HttpServlet {
                     System.out.println("institute"+institute);
                      if(institute!=null)
                    { 
-                       System.out.println("Security check complete");
                        httpsess.setAttribute("loggedInstitute",institute);
-                       response.sendRedirect("institute.jsp");
+                        System.out.println("Security check complete");
+                        
+                       if(institute.getInstype().equalsIgnoreCase("bloodbank"))
+                       { response.sendRedirect("bloodbank.jsp");}
+                       else if(institute.getInstype().equalsIgnoreCase("hospital"))
+                       { response.sendRedirect("hospital.jsp");}
+//                       else if(institute.getInstype().equalsIgnoreCase("ngo"))
+//                       {}
+                      
+                       
+                      
                        return;
                     
                    }

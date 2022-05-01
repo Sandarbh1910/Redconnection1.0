@@ -10,6 +10,7 @@ package RCPOJO;
  * @author sanda
  */
 public class InstitutePOJO {
+    private int id;
     private String name;
     private String email;
     private String mob;
@@ -23,7 +24,8 @@ public class InstitutePOJO {
     
     
     
-    public InstitutePOJO(String name, String email, String mob, String password, String City, String State, String Country, String pincode ,String address,String instype) {
+    public InstitutePOJO(int id,String name, String email, String mob, String password, String City, String State, String Country, String pincode ,String address,String instype) {
+        this.id=id;
         this.name = name;
         this.email = email;
         this.mob = mob;
@@ -34,6 +36,27 @@ public class InstitutePOJO {
         this.Country = Country;
         this.pincode = pincode;
         this.instype=instype;
+    }
+
+    public InstitutePOJO(String name, String email, String mob, String password, String address, String State, String City, String Country, String pincode, String instype) {
+        this.name = name;
+        this.email = email;
+        this.mob = mob;
+        this.password = password;
+        this.address = address;
+        this.State = State;
+        this.City = City;
+        this.Country = Country;
+        this.pincode = pincode;
+        this.instype = instype;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getInstype() {

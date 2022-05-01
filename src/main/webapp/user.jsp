@@ -104,7 +104,7 @@ else{
             %>
     <li class="request">
     <details>
-        <summary>Request id : <%=breq.getReqno()%> <i><%=breq.getIcity()+", "+breq.getIstate()+", "+breq.getIcountry()+"- "+breq.getIpincode()%></i><a href="" class="respond-btn">Respond</a></summary>
+        <summary>Request id : <%=breq.getReqno()%> <i><%=breq.getIcity()+", "+breq.getIstate()+", "+breq.getIcountry()+"- "+breq.getIpincode()%></i><a href="BloodDonationResponseServlet?reqno=<%=breq.getReqno()%>&bgrp=<%=user.getBloodgrp()%>&demail=<%=user.getEmail()%>&institute=<%=breq.getInstitute()+" "+breq.getIcity()+", "+breq.getIstate()+", "+breq.getIcountry()+"- "+breq.getIpincode()%>" class="respond-btn">Respond</a></summary>
         <div>Institute Address&nbsp;:&nbsp;<%=breq.getInstitute()+" "+breq.getIcity()+", "+breq.getIstate()+", "+breq.getIcountry()+"- "+breq.getIpincode()%> </div>
         <div>Units&nbsp;:&nbsp;<%=breq.getUnits()%></div>
         <div>Purpose&nbsp;:&nbsp;<%=breq.getPurpose()%></div>

@@ -1,4 +1,18 @@
+<%@page import="RCPOJO.InstitutePOJO"%>
+<%
+    InstitutePOJO institute=(InstitutePOJO)session.getAttribute("loggedInstitute");
+    if(institute==null)
+    {
+        session.setAttribute("message", "Login Required!");
+    session.setAttribute("dispcol","1");
+    response.sendRedirect("login.jsp");
+    System.out.println("Login required on user page");
+    return;
+    }
+    
+ 
 
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">

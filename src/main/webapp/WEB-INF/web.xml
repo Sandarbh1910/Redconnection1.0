@@ -44,6 +44,14 @@
         <servlet-name>BloodRequestServlet</servlet-name>
         <servlet-class>com.mycompany.redconnection.BloodRequestServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateBloodBankStockServlet</servlet-name>
+        <servlet-class>com.mycompany.redconnection.UpdateBloodBankStockServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BloodDonationResponseServlet</servlet-name>
+        <servlet-class>com.mycompany.redconnection.BloodDonationResponseServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RCContactServlet</servlet-name>
         <url-pattern>/RCContactServlet</url-pattern>
@@ -87,6 +95,14 @@
     <servlet-mapping>
         <servlet-name>BloodRequestServlet</servlet-name>
         <url-pattern>/BloodRequestServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateBloodBankStockServlet</servlet-name>
+        <url-pattern>/UpdateBloodBankStockServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BloodDonationResponseServlet</servlet-name>
+        <url-pattern>/BloodDonationResponseServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
