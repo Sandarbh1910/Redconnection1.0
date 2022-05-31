@@ -43,7 +43,7 @@ public class BloodRequestDAO {
     {ArrayList<BloodRequestPOJO>breqlist=null;
          try{
             Connection conn=DBConnection.getConnection();
-            PreparedStatement ps=conn.prepareStatement("select * from bloodrequest where icountry=?");
+            PreparedStatement ps=conn.prepareStatement("select * from bloodrequest where icountry=? order by requestno desc");
             ps.setString(1, country);
          
             ResultSet rs= ps.executeQuery();
@@ -65,7 +65,7 @@ public class BloodRequestDAO {
     { ArrayList<BloodRequestPOJO>breqlist=null;
          try{
             Connection conn=DBConnection.getConnection();
-            PreparedStatement ps=conn.prepareStatement("select * from bloodrequest where icountry=? and istate=?");
+            PreparedStatement ps=conn.prepareStatement("select * from bloodrequest where icountry=? and istate=? order by requestno desc");
             ps.setString(1, country);
             ps.setString(2, state);
          
@@ -89,7 +89,7 @@ public class BloodRequestDAO {
     {ArrayList<BloodRequestPOJO>breqlist=null;
          try{
             Connection conn=DBConnection.getConnection();
-            PreparedStatement ps=conn.prepareStatement("select * from bloodrequest where icountry=? and istate=? and icity=?");
+            PreparedStatement ps=conn.prepareStatement("select * from bloodrequest where icountry=? and istate=? and icity=? order by requestno desc");
             ps.setString(1, country);
             ps.setString(2, state);
             ps.setString(3, city);
@@ -114,7 +114,7 @@ public class BloodRequestDAO {
     {ArrayList<BloodRequestPOJO>breqlist=null;
          try{
             Connection conn=DBConnection.getConnection();
-            PreparedStatement ps=conn.prepareStatement("select * from bloodrequest where ipincode=?");
+            PreparedStatement ps=conn.prepareStatement("select * from bloodrequest where ipincode=? order by requestno desc");
             ps.setString(1, pincode);
             
          

@@ -6,6 +6,8 @@
 package com.mycompany.redconnection;
 
 import RCDAO.BloodDonationResponseDAO;
+import RCHelper.Helper;
+import RCMail.Mailer;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -46,10 +48,12 @@ public class BloodDonationResponseServlet extends HttpServlet {
                 response.sendRedirect("user.jsp");
                 return;
             }
-            
-            String res=BloodDonationResponseDAO.respondToRequest(Integer.parseInt(requestno), demail, bgrp, institute);
+            int verificationotp=Helper.generateOTP();
+            System.out.println("institute "+institute);
+            String res=BloodDonationResponseDAO.respondToRequest(Integer.parseInt(requestno), demail, bgrp, institute,verificationotp);
             if(res.equalsIgnoreCase("Responded Successfully,Now remember to visit the institute and donate on time because you chose to be someone's saviour"))
             {
+                Mailer.sendMail("Verification Code", res+"\n Your donation verification code is : "+verificationotp, demail);
                 httpsess.setAttribute("message", res);
                 httpsess.setAttribute("dispcol", "2");
             }

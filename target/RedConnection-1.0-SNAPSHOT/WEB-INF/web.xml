@@ -38,7 +38,7 @@
     </servlet>
     <servlet>
         <servlet-name>VerifyDonorServlet</servlet-name>
-        <servlet-class>com.mycompany.redconnection.VerifyDonorServlet</servlet-class>
+        <servlet-class>com.mycompany.redconnection.VerifyUserServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>BloodRequestServlet</servlet-name>
@@ -51,6 +51,10 @@
     <servlet>
         <servlet-name>BloodDonationResponseServlet</servlet-name>
         <servlet-class>com.mycompany.redconnection.BloodDonationResponseServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VerifyDonorAtInstituteServlet</servlet-name>
+        <servlet-class>com.mycompany.redconnection.VerifyDonorAtInstituteServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RCContactServlet</servlet-name>
@@ -103,6 +107,10 @@
     <servlet-mapping>
         <servlet-name>BloodDonationResponseServlet</servlet-name>
         <url-pattern>/BloodDonationResponseServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VerifyDonorAtInstituteServlet</servlet-name>
+        <url-pattern>/VerifyDonorAtInstituteServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -206,7 +206,7 @@ main{
     }
 
     .info-container{margin:auto;
-    width:80%;}
+    width:95% !important;}
 }
 
 .request{

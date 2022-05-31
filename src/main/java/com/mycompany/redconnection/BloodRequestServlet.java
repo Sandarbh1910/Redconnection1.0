@@ -7,6 +7,7 @@ package com.mycompany.redconnection;
 
 import RCDAO.BloodRequestDAO;
 import RCPOJO.BloodRequestPOJO;
+import RCPOJO.UserPOJO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -35,9 +36,9 @@ public class BloodRequestServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession httpsess = request.getSession();
         try (PrintWriter out = response.getWriter()) {
-
-            String email = request.getParameter("email");
-            String mob = request.getParameter("mob");
+            UserPOJO u=(UserPOJO)httpsess.getAttribute("loggedUser");
+            String email = u.getEmail();
+            String mob = u.getMob();
             String institute = request.getParameter("institute");
             String icity = request.getParameter("icity");
             String istate = request.getParameter("istate");

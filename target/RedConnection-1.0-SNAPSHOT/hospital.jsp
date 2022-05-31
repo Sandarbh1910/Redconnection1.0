@@ -48,45 +48,21 @@
 <input type="radio"  checked name="switch-interface" id="verify-interface-radio" class="switch-interface">
 <div id="verify-interface" class="interface">
     
-
-Verify
-
+  <form  method="POST" action="VerifyDonorAtInstituteServlet" id="verifydonor-form">
+            <h2>Verify Donor</h2>
+            <div class="data">
+                <input type="email" name="donoremail" placeholder="Email" required class="verify-data">
+                <input type="password" name="verificationotp" placeholder="OTP" required class="verify-data">
+               
+                <div><em>Verify the otp sent on donors registered email address.</em></div>
+            </div>
+           <input type="submit" id="verify-otp-btn" value="Send Otp">
+        </form>
 </div>
 
 <input type="radio" name="switch-interface" id="storage-interface-radio" class="switch-interface">
 <div id="storage-interface" class="interface" >
-    <form action="BloodRequestServlet" class="seek-form" method="POST">
-        <input type="email" required placeholder="Email" name="email" class="input-data">
-        <input type="tel" required placeholder="Mobile" name="mob" class="input-data">
-        <input type="text" required  placeholder="Hospital Name" name="institute" class="input-data">
-        <div class="hospital-address">
-        <input type="text" required  placeholder="Hospital City" name="icity" class="input-data add">
-        <input type="text" required placeholder="Hospital State" name="istate" class="input-data add">
-        <input type="text" required placeholder="Hospital Country" name="icountry" class="input-data add">
-        <input type="number" required placeholder="Hospital Pincode" name="ipincode"class="input-data add">
-        </div>
-        
-        <div id="blood-group">
-           <div>
-            Group
-            <select  name="grp" id="group"  required>
-            <option value="A">A</option>
-            <option value="B">B</option>
-            <option value="AB">AB</option>
-            <option value="O">O</option>
-            </select>
-           </div>
-            <div>Rh
-                <select  name="rh" id="rh" name="rh" required>
-                    <option value="+ve">+ve</option>
-                    <option value="-ve">-ve</option>
-                    </select></div>
-    </div>
-    <input type="number" placeholder="Units" name="units" required class="input-data">
-    <div class="date"><span>On</span><input name="date" type="date" required class="input-data on"></div>
-    <textarea name="purpose" class="input-data" required placeholder="Purpose" id="" cols="30" rows="10"></textarea>
-    <input type="submit" id="seek-btn" value="Request" class="input-data">
-    </form>
+   
 
 </div>
 

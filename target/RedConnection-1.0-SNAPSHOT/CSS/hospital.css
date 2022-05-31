@@ -156,27 +156,7 @@ main{
     width:calc(100% - 51px);
     /* min-height:calc(100vh - 50px); */
     height:100%;
-}
-
-
-.region-filter{
-    padding:5px;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: nowrap;
-    align-items: center;
-}
-.region{
-    background-color: #e2e5e7;
-    color:black;
-    padding:5px;
-    border-radius:5px;
-}
-
-.region:hover{
-    background-color: #084a5e;
-    color:white;
-   
+    
 }
 
 
@@ -184,7 +164,8 @@ main{
 .interface{
     display:none;
     min-height:80vh;
-    height: 95vh;
+    height: 85vh;
+   
 }
 
 
@@ -196,6 +177,80 @@ main{
     overflow-x: hidden;
     
 }
+
+
+#verifydonor-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-width:300px;
+    width:20%;
+    border:1px solid #e1e1e2;
+    min-height: 300px;
+    border-radius: 5px;
+    padding: 10px;
+    margin:auto;
+}
+.data{
+    width:95%;
+    min-width: 260px;
+}
+
+.verify-data{
+    padding:5px;
+    border-radius: 5px;
+    border:1px solid #e1e1e2;
+    margin-top:10px;
+    resize: none;
+    width:100%;
+    
+}
+
+
+
+#verifydonor-form em{
+    width:100%;
+   
+    }
+
+#verify-otp-btn{
+    background-color: #d94645;
+color:white;
+font-size: large;
+border:0;
+border-radius: 3px;
+margin-top:20px;
+width:50%;
+margin-left:auto;
+margin-right:auto;
+padding:5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Storage Interface*/
 
 #storage-interface-radio:checked ~ #storage-interface{
     display: flex;

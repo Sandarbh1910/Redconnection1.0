@@ -222,8 +222,8 @@ else{
 <input type="radio" name="switch-interface" id="seek-interface-radio" class="switch-interface">
 <div id="seek-interface" class="interface" >
     <form action="BloodRequestServlet" class="seek-form" method="POST">
-        <input type="email" required placeholder="Email" name="email" class="input-data">
-        <input type="tel" required placeholder="Mobile" name="mob" class="input-data">
+        <!--<input type="email" required placeholder="Email" name="email" value="sandarbh19o@gmail.com" readonly class="input-data">-->
+        <!--<input type="tel" required placeholder="Mobile" name="mob" class="input-data">-->
         <input type="text" required  placeholder="Hospital Name" name="institute" class="input-data">
         <div class="hospital-address">
         <input type="text" required  placeholder="Hospital City" name="icity" class="input-data add">

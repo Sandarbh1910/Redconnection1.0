@@ -91,7 +91,7 @@
         request of a seeker to corresponding
         donors with real-time mailing service without compromising the donors and seekers privacy.Along with it we verify
         the donor at the institute where donation is to be done and reward the donors for their noble deed (not
-        monetarily instead by providing them with certificates of appreciation and suitable medical service thereby
+        monetarily instead by providing them with certificates of appreciation and  health credits which can be redeemed for medical services in future , thereby
         contributing in the healthy nation mission.)</p>
       <h2>Now it sounds cool 😎. Good deed + reward + medical care = awesome🤟.
       </h2>
