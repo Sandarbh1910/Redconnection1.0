@@ -56,6 +56,10 @@
         <servlet-name>VerifyDonorAtInstituteServlet</servlet-name>
         <servlet-class>com.mycompany.redconnection.VerifyDonorAtInstituteServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BuyHealthCoupons</servlet-name>
+        <servlet-class>com.mycompany.redconnection.BuyHealthCoupons</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RCContactServlet</servlet-name>
         <url-pattern>/RCContactServlet</url-pattern>
@@ -111,6 +115,10 @@
     <servlet-mapping>
         <servlet-name>VerifyDonorAtInstituteServlet</servlet-name>
         <url-pattern>/VerifyDonorAtInstituteServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BuyHealthCoupons</servlet-name>
+        <url-pattern>/BuyHealthCoupons</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

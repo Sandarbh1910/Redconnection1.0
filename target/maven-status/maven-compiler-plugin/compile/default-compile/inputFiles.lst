@@ -1,7 +1,9 @@
+E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\VerifyDonorAtInstituteServlet.java
 E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\BloodDonationResponseServlet.java
 E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\CreatePasswordServlet.java
 E:\Projects\RedConnection\src\main\java\RCDAO\BloodRequestDAO.java
 E:\Projects\RedConnection\src\main\java\RCDAO\BloodDonationResponseDAO.java
+E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\VerifyUserServlet.java
 E:\Projects\RedConnection\src\main\java\RCHelper\Validations.java
 E:\Projects\RedConnection\src\main\java\RCPOJO\BloodBankPOJO.java
 E:\Projects\RedConnection\src\main\java\RCPOJO\BloodRequestPOJO.java
@@ -9,7 +11,6 @@ E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\BloodRequest
 E:\Projects\RedConnection\src\main\java\RCPOJO\UserPOJO.java
 E:\Projects\RedConnection\src\main\java\RCMail\Mailer.java
 E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\InstituteLoginServlet.java
-E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\VerifyDonorServlet.java
 E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\VerificationServlet.java
 E:\Projects\RedConnection\src\main\java\RCDAO\UserDAO.java
 E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\InstituteSignupServlet.java

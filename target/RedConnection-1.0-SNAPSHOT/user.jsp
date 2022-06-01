@@ -1,3 +1,7 @@
+<%@page import="RCHelper.Helper"%>
+<%@page import="RCPOJO.HealthCouponsPOJO"%>
+<%@page import="RCPOJO.HealthCouponsPOJO"%>
+<%@page import="RCDAO.HealthCouponsDAO"%>
 <%@page import="RCDAO.BloodBankDAO"%>
 <%@page import="RCPOJO.BloodBankPOJO"%>
 <%@page import="RCDAO.BloodRequestDAO"%>
@@ -48,6 +52,11 @@ else{
      banklist=BloodBankDAO.loadBanksByState(user.getState(), user.getCountry());
     breqlist=BloodRequestDAO.loadBloodRequestByCountry(user.getCountry());
 }
+
+
+//Fetching user health coupons
+
+ArrayList<HealthCouponsPOJO> couponlist=HealthCouponsDAO.getUserCouponList(user.getEmail());
 
 
 
@@ -265,29 +274,40 @@ else{
         <div class="reward-card">
             <img src="http://source.unsplash.com/190x150/?doctors" alt="" class="reward-img">
             <h4>Free Doctor Consultation</h4>
-            <div class="reward-buy-btn"><a href="" >3 Credits</a></div>
+            <div class="reward-buy-btn"><a href="BuyHealthCoupons?coupontype=1" >10 Credits</a></div>
         </div>
         <div class="reward-card">
-            <img src="http://source.unsplash.com/190x150/?doctors" alt="" class="reward-img">
+            <img src="http://source.unsplash.com/190x150/?lab" alt="" class="reward-img">
             <h4>Free Blood Test</h4>
-            <div class="reward-buy-btn"><a href="" >5 Credits</a></div>
+            <div class="reward-buy-btn"><a href="BuyHealthCoupons?coupontype=2" >20 Credits</a></div>
         </div>
         
     </div>
 </div>
 <div class="my-rewards">
-    <h2 class="reward-title">My Vouchers</h2>
+    <h2 class="reward-title">My Coupons</h2>
     <div class="myreward-container">
         
+        <%
+            System.out.println("couponlist"+ couponlist);
+        for(HealthCouponsPOJO h:couponlist)
+        {
+        
+        %>
+        
         <div class="myreward-card">
-            <img src="http://source.unsplash.com/190x150/?doctors" alt="" class="reward-img">
-            <h4>Free Doctor Consultation</h4>
+            <img src="http://source.unsplash.com/190x150/?coupons" alt="" class="reward-img">
+            <h4><%=h.getCtype()%></h4>
+            
             <details>
-                <summary>Voucher Code</summary>
-                <div class="voucher-code">1111</div>
+                <summary>Coupon Code</summary>
+                <div class="voucher-code"><%=h.getCcode()%></div>
             </details>
         </div>
-       
+       <%
+        
+        }
+        %>
     </div>
     
 </div>

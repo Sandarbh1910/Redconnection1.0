@@ -104,5 +104,86 @@ public class UserDAO {
         return "Could not change password";}
     }
     
+    
+    
+    public static String getDonorName(String email)
+    {
+        String donor="";
+        try{
+             Connection conn=DBConnection.getConnection();
+            PreparedStatement ps=conn.prepareStatement("select firstname,lastname from users where email=?");
+            
+          
+            ps.setString(1,email);
+           
+             ResultSet rs=ps.executeQuery();
+             if(rs.next())
+             {
+                 donor=(rs.getString("firstname")+" "+rs.getString("lastname"));
+             }
+            
+             return donor ;
+
+            
+        }catch(Exception ex){ex.printStackTrace();
+        return donor;}
+        finally{
+        return donor;}
+    }
+    
+    
+    public static int getUserHealthCredits(String email)
+    {
+        int credits=0;
+        try{
+             Connection conn=DBConnection.getConnection();
+            PreparedStatement ps=conn.prepareStatement("select healthcredits from users where email=?");
+            
+          
+            ps.setString(1,email);
+           
+             ResultSet rs=ps.executeQuery();
+             if(rs.next())
+             {
+                 credits=(rs.getInt("healthcredits"));
+             }
+            
+             return credits ;
+
+            
+        }catch(Exception ex){ex.printStackTrace();
+        return credits;}
+        finally{
+        return credits;}
+    }
+    
+    
+    public static boolean updateHealthCredits(String email,int change)
+    {
+        int credits=0;
+        try{
+            credits=UserDAO.getUserHealthCredits(email);
+            System.out.println("Current credits "+credits);
+            if(change<0&&credits<Math.abs(change))
+            {
+                return false;
+            }
+             Connection conn=DBConnection.getConnection();
+            PreparedStatement ps=conn.prepareStatement("update users set healthcredits=?  where email=?");
+            
+          ps.setInt(1, credits+change);
+            ps.setString(2,email);
+           
+             ps.executeUpdate();
+             
+            
+             return true ;
+
+            
+        }catch(Exception ex){ex.printStackTrace();
+        return false;}
+        
+    }
+    
      
 }

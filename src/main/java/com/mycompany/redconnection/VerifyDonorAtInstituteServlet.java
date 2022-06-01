@@ -6,6 +6,10 @@
 package com.mycompany.redconnection;
 
 import RCDAO.BloodDonationResponseDAO;
+import RCDAO.UserDAO;
+import RCHelper.Helper;
+import RCMail.Mailer;
+import RCPOJO.InstitutePOJO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -27,28 +31,83 @@ public class VerifyDonorAtInstituteServlet extends HttpServlet {
            String donoremail=request.getParameter("donoremail");
            if(donorotp==null||donoremail==null||donorotp.isEmpty()||donoremail.isEmpty())
            {
-                httpsess.setAttribute("message","Fields cannot be empty!");
-               httpsess.setAttribute("dispcol","1");
+               Helper.setMessage(httpsess, "Fields cannot be empty!", "1");
                response.sendRedirect("hospital.jsp");
                return;
            }
            
            
-           String res=BloodDonationResponseDAO.verifyDonorAtInstitute(donoremail,donorotp);
+           int donationid=BloodDonationResponseDAO.getDonationId(donoremail,donorotp);
+          if(donationid==-1)
+          {
+              Helper.setMessage(httpsess, "Sorry could not verify at the moment ", "1");
+               response.sendRedirect("hospital.jsp");
+               return;
+          }
+            
+            httpsess.setAttribute("donorfname",UserDAO.getDonorName(donoremail));
+               httpsess.setAttribute("donoremail",donoremail);
+               InstitutePOJO i=(InstitutePOJO)httpsess.getAttribute("loggedInstitute");
+//               httpsess.setAttribute("institute",i.getName()+" "+i.getCity());
+               httpsess.setAttribute("donationid",donationid);
+               
+               System.out.println("Donationid at verifydonor servlet "+donationid);
+               
+           if(donationid>-1)
+           { 
+               String status=BloodDonationResponseDAO.donationResponseStatus(donoremail, donorotp);
+               System.out.println("status at verifydonor serv "+status);
+            if(status.equalsIgnoreCase("pending"))
+            {
+                BloodDonationResponseDAO.updateDonationStatus(donoremail, donorotp);
+                boolean updatecrstatus=UserDAO.updateHealthCredits(donoremail,5);
+                 if(updatecrstatus==false)
+               {
+                   Helper.setMessage(httpsess, "Sorry Could not verify at the moment!", "1");
+                   BloodDonationResponseDAO.deVerifyDonor(donoremail, donorotp);
+               response.sendRedirect("hospital.jsp");
+               return;
+               }
+//                 httpsess.setAttribute("donorfname",UserDAO.getDonorName(donoremail));
+//               httpsess.setAttribute("donoremail",donoremail);
+//                i=(InstitutePOJO)httpsess.getAttribute("loggedInstitute");
+//               httpsess.setAttribute("institute",i.getName()+" "+i.getCity());
+//               httpsess.setAttribute("donationid",donationid);
+               Helper.setMessage(httpsess, "Donor Verified!","2");
+               Mailer.sendMail("Verified", "Conrgatulations!\nYou saved a life.\n\nHealth credits will be deposited in your RedConnection account within 48 hours.", donoremail);
+               response.sendRedirect("issuecertificate.jsp");
+               return;
+                 
+                 
+                 
+            }
+            
+            else if(status.equalsIgnoreCase("verified"))
+            {
+//                httpsess.setAttribute("donorfname",UserDAO.getDonorName(donoremail));
+//               httpsess.setAttribute("donoremail",donoremail);
+//                i=(InstitutePOJO)httpsess.getAttribute("loggedInstitute");
+//               httpsess.setAttribute("institute",i.getName()+" "+i.getCity());
+//               httpsess.setAttribute("donationid",donationid);
+//               System.out.println("Already verified at institute");
+               Helper.setMessage(httpsess, "Already Verified!!", "1");
+               Mailer.sendMail("Verified", "Conrgatulations!\nYou saved a life.\n\nHealth credits will be deposited in your RedConnection account within 48 hours.", donoremail);
+               response.sendRedirect("issuecertificate.jsp");
+               return;
+            }
+            
+            else{
+                Helper.setMessage(httpsess, "Sorry could not verify at the moment ", "1");
+               response.sendRedirect("hospital.jsp");
+               return;
+            }          
+               
+           }
            
-           if(res.equalsIgnoreCase("Donor Verified"))
-           {
-                httpsess.setAttribute("message",res);
-               httpsess.setAttribute("dispcol","2");
-               response.sendRedirect("hospital.jsp");
-               return;
-           }
-           else {
-                httpsess.setAttribute("message",res);
-               httpsess.setAttribute("dispcol","1");
-               response.sendRedirect("hospital.jsp");
-               return;
-           }
+          
+           
+         
+           
            
         }
     }

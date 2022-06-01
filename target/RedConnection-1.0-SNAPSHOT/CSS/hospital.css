@@ -252,7 +252,7 @@ padding:5px;
 
 /*Storage Interface*/
 
-#storage-interface-radio:checked ~ #storage-interface{
+#redeemcoupon-interface-radio:checked ~ #redeemcoupon-interface{
     display: flex;
 }
 
