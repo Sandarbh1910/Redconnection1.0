@@ -35,6 +35,20 @@ public class UserPOJO {
         this.Country = Country;
         this.pincode = pincode;
     }
+    
+    
+    public UserPOJO(String fname, String lname, String mob, String email, String dob, String bloodgrp, String State, String City, String Country, String pincode) {
+        this.fname = fname;
+        this.lname = lname;
+        this.mob = mob;
+        this.email = email;
+        this.dob = dob;
+        this.bloodgrp = bloodgrp;
+        this.State = State;
+        this.City = City;
+        this.Country = Country;
+        this.pincode = pincode;
+    }
 
     public void setState(String State) {
         this.State = State;

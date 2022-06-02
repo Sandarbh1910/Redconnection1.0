@@ -50,6 +50,20 @@ public class InstitutePOJO {
         this.pincode = pincode;
         this.instype = instype;
     }
+    
+    
+    
+    public InstitutePOJO(String name, String email, String mob, String address, String State, String City, String Country, String pincode) {
+        this.name = name;
+        this.email = email;
+        this.mob = mob;
+        this.address = address;
+        this.State = State;
+        this.City = City;
+        this.Country = Country;
+        this.pincode = pincode;
+        
+    }
 
     public int getId() {
         return id;

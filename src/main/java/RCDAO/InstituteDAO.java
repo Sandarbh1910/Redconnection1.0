@@ -150,4 +150,28 @@ public class InstituteDAO {
         }catch(Exception ex){ex.printStackTrace();
         }
       }
+      
+      
+      
+      public static String updateInstituteDetails(InstitutePOJO i,String email)
+      {
+          try {
+            Connection conn=DBConnection.getConnection();
+            PreparedStatement ps=conn.prepareStatement("update institutes set name=?,mob=?,email=?,city=?,state=?,country=?,address=?,pincode=? where email=?");
+            
+          ps.setString(1, i.getName());
+            ps.setString(2, i.getMob());
+            ps.setString(3,i.getEmail());
+            ps.setString(4, i.getCity());
+            ps.setString(5,i.getState());
+            ps.setString(6,i.getCountry());
+            ps.setString(7, i.getAddress());
+            ps.setString(8, i.getPincode());
+            ps.setString(9, email);
+           
+             ps.executeUpdate();
+             return "Details updated successfully!";
+        }catch(SQLIntegrityConstraintViolationException ex){ex.printStackTrace();return "Email/Mobile already exists!";}catch(Exception ex)
+        {ex.printStackTrace();return "Sorry could not update details";}
+      }
 }

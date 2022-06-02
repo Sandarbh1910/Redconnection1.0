@@ -9,6 +9,7 @@ E:\Projects\RedConnection\src\main\java\RCPOJO\BloodBankPOJO.java
 E:\Projects\RedConnection\src\main\java\RCPOJO\BloodRequestPOJO.java
 E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\BloodRequestServlet.java
 E:\Projects\RedConnection\src\main\java\RCPOJO\UserPOJO.java
+E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\BuyHealthCoupons.java
 E:\Projects\RedConnection\src\main\java\RCMail\Mailer.java
 E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\InstituteLoginServlet.java
 E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\VerificationServlet.java
@@ -16,9 +17,11 @@ E:\Projects\RedConnection\src\main\java\RCDAO\UserDAO.java
 E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\InstituteSignupServlet.java
 E:\Projects\RedConnection\src\main\java\RCDAO\InstituteDAO.java
 E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\RCContactServlet.java
+E:\Projects\RedConnection\src\main\java\RCPOJO\HealthCouponsPOJO.java
 E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\LoginServlet.java
 E:\Projects\RedConnection\src\main\java\RCDAO\BloodBankDAO.java
 E:\Projects\RedConnection\src\main\java\RCDBUTIL\DBConnection.java
+E:\Projects\RedConnection\src\main\java\RCDAO\HealthCouponsDAO.java
 E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\UserSignupServlet.java
 E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\PasswordAssistanceServlet.java
 E:\Projects\RedConnection\src\main\java\RCPOJO\InstitutePOJO.java
@@ -26,3 +29,4 @@ E:\Projects\RedConnection\src\main\java\RCHelper\Helper.java
 E:\Projects\RedConnection\src\main\java\RCPOJO\BloodBankStockPOJO.java
 E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\UpdateBloodBankStockServlet.java
 E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\LogoutServlet.java
+E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\UserProfileUpdateServlet.java

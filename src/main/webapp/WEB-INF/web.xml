@@ -60,6 +60,14 @@
         <servlet-name>BuyHealthCoupons</servlet-name>
         <servlet-class>com.mycompany.redconnection.BuyHealthCoupons</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UserProfileUpdateServlet</servlet-name>
+        <servlet-class>com.mycompany.redconnection.UserProfileUpdateServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InstituteProfileUpdateServlet</servlet-name>
+        <servlet-class>com.mycompany.redconnection.InstituteProfileUpdateServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RCContactServlet</servlet-name>
         <url-pattern>/RCContactServlet</url-pattern>
@@ -119,6 +127,14 @@
     <servlet-mapping>
         <servlet-name>BuyHealthCoupons</servlet-name>
         <url-pattern>/BuyHealthCoupons</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserProfileUpdateServlet</servlet-name>
+        <url-pattern>/UserProfileUpdateServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InstituteProfileUpdateServlet</servlet-name>
+        <url-pattern>/InstituteProfileUpdateServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

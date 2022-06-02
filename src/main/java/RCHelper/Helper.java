@@ -43,4 +43,20 @@ public class Helper {
          SimpleDateFormat ft=new SimpleDateFormat("dd/MM/yyyy");
          return ft.format(date);
      }
+     
+     
+     public static Date stringtoDate(String date)
+     {
+         Date d=null;
+         try{
+             SimpleDateFormat ft=new SimpleDateFormat("yyyy-MM-dd");
+         d= ft.parse(date);
+         
+         }catch(Exception ex){ ex.printStackTrace();}
+         
+         return d;
+     }
+     
+     
+     
 }

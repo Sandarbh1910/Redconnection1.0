@@ -34,7 +34,7 @@ public class InstituteSignupServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+          response.setContentType("text/html;charset=UTF-8");
         HttpSession httpsess=request.getSession();
         try{
             /* TODO output your page here. You may use following sample code. */
@@ -98,7 +98,15 @@ public class InstituteSignupServlet extends HttpServlet {
                String res=InstituteDAO.signupInstitute(institute);
               
                if(res.equalsIgnoreCase("Registration successful"))
-              { if(BloodBankDAO.createStock(InstituteDAO.getInstituteId(email)))
+              {
+                  if(instype.equalsIgnoreCase("hospital"))
+                  {
+                       httpsess.setAttribute("message",res);
+              httpsess.setAttribute("dispcol","2");
+              response.sendRedirect("signup.jsp");return;
+                  }
+                  
+                  else if(instype.equalsIgnoreCase("bloodbank")&&BloodBankDAO.createStock(InstituteDAO.getInstituteId(email)))
               {
                     httpsess.setAttribute("message",res);
               httpsess.setAttribute("dispcol","2");
@@ -146,7 +154,6 @@ public class InstituteSignupServlet extends HttpServlet {
               response.sendRedirect("signup.jsp");
               return;
         }
-        
         
     }
 

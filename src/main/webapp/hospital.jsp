@@ -36,7 +36,7 @@
          </div>
          <div class="user"><img src="Icons/usergrey.png" class="prof-icon" alt="">
             <ul class="user-drp-dwn">
-                <li class="user-opt">Profile</li>
+                <li class="user-opt"><a href="instituteprofile.jsp">Profile</a></li>
                 <li class="user-opt"><a href="passwordassistance.jsp">Change Password</a></li>
                 <hr>
                 <li class="user-opt"><a href="LogoutServlet">Sign Out</a></li>
