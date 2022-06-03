@@ -183,11 +183,14 @@ main{
 }
 
 #event-interface-radio:checked ~ #event-interface{
-    display: flex;
-    flex-direction: column;
+     display: flex;
+    /*flex-direction: column;*/
     width:100%;
+    flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
+    overflow: hidden;
+    overflow-y: scroll;
 }
 
 
@@ -361,8 +364,153 @@ footer{
 
 
 
+/* event start*/
+
+.event{
+     width:40%;
+     height:100%;
+     min-width:300px;
+     overflow: hidden;
+     overflow-y: scroll;
+ }
+
+.planevent{
+    border:1px solid #e1e1e2;
+    padding:20px;
+    min-width: 250px;
+    /*width:25vw;*/
+    width:48%;
+}
+
+.eventform{
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    flex-wrap:nowrap;
+    align-items: center;
+}
+
+.planevent-data{
+    padding:5px;
+    border-radius: 5px;
+    border:1px solid #e1e1e2;
+    margin-top:10px;
+    resize: none;
+    width:95%;
+}
 
 
+.pdate,.ptime{
+    padding:10px;
+    display:flex;
+    flex-wrap:wrap;
+}
+.pdate span{
+    padding:5px;
+    border-radius: 5px;
+    margin-top:10px;
+    resize: none;
+    width:48%;
+    display:inline-block;
+    text-align: center;
+}
+
+.ptime p{
+    width:100%;
+    text-align: center;
+}
+.pdated,.ptimed{
+    padding:5px;
+    border-radius: 5px;
+    border:1px solid #e1e1e2;
+    margin-top:10px;
+    resize: none;
+    width:48%;
+    display:inline-block;
+    text-align: center;
+}
+
+
+
+
+.confirm-event{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:5px;
+    width:100%;
+    
+}
+
+#planeventcheck{
+    margin-right: 5px;
+}
+
+.plan-event-btn{
+    margin-left:auto;
+    margin-right:auto;
+     padding:5px;
+    border-radius: 5px;
+    border:1px solid #e1e1e2;
+    margin-top:10px;
+    resize: none;
+    width:80%;
+     background-color: #f36666;
+     color:white;
+}
+
+.plannedevents{
+    width:100%;
+    padding:10px;
+    min-width:250px;
+}
+
+.plannedevents-container{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.plannedevent{
+    width:100%;
+    margin-top: 5px;
+    padding:10px;
+    border-radius: 5px;
+    border: 1px solid #f8e3e7;
+}
+
+.plannedevent summary{
+    width:100%;
+    min-width: 100%;
+}
+.deleteevent{
+    float:right;
+    color:white;
+    background-color: #f36666;
+    padding:5px;
+    border-radius: 5px;
+}
+.deleteevent:hover{
+    background-color: #d94645;
+}
+
+.eventduration{
+    display:flex;
+    flex-wrap:nowrap;
+    justify-content: space-between;
+    max-width:400px;
+}
+.eventduration em,.eventduration span{
+    display:inline-block;
+  
+    
+
+}
+
+
+
+
+/* event over*/
 
 
 

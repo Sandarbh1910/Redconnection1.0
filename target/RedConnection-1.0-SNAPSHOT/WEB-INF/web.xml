@@ -72,6 +72,14 @@
         <servlet-name>RedeemHealthCouponServlet</servlet-name>
         <servlet-class>com.mycompany.redconnection.RedeemHealthCouponServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PlanEventServlet</servlet-name>
+        <servlet-class>com.mycompany.redconnection.PlanEventServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteEventServlet</servlet-name>
+        <servlet-class>com.mycompany.redconnection.DeleteEventServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RCContactServlet</servlet-name>
         <url-pattern>/RCContactServlet</url-pattern>
@@ -143,6 +151,14 @@
     <servlet-mapping>
         <servlet-name>RedeemHealthCouponServlet</servlet-name>
         <url-pattern>/RedeemHealthCouponServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PlanEventServlet</servlet-name>
+        <url-pattern>/PlanEventServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteEventServlet</servlet-name>
+        <url-pattern>/DeleteEventServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -1,3 +1,6 @@
+<%@page import="RCPOJO.EventsPOJO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="RCDAO.EventsDAO"%>
 <%@page import="RCPOJO.InstitutePOJO"%>
 <%
     InstitutePOJO institute=(InstitutePOJO)session.getAttribute("loggedInstitute");
@@ -10,7 +13,7 @@
     return;
     }
     
- 
+ ArrayList<EventsPOJO>elist=EventsDAO.getInstituteEvents(institute.getEmail());
 
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -65,7 +68,7 @@
 <input type="radio" name="switch-interface" id="redeemcoupon-interface-radio" class="switch-interface">
 <div id="redeemcoupon-interface" class="interface" >
    
-Redeem
+
 <form class="redeemform"  action="RedeemHealthCouponServlet">
     <img src="Icons/redeemcoupon.png">
                 <h2>Redeem Health Coupon</h2>
@@ -87,10 +90,67 @@ Redeem
 
 <input type="radio" name="switch-interface" id="event-interface-radio" class="switch-interface">
 <div id="event-interface" class="interface" >
+    
+    <div class="event">
+        <div class="plannedevents">
+                <div class="plannedevents-container">
+                    <h2>Planned Events</h2>
+                    
+                    <%
+                      if(elist!=null) {  for(EventsPOJO e:elist)
+                         {
+                    %>
+               <details class="plannedevent">
+                    <summary class="event"><%=e.getEvent()%> <a href="DeleteEventServlet?eventid=<%=e.getEventid()%>" class="deleteevent">Delete</a></summary>
+                   <p><em>Organized by : </em><%=e.getOrganiser()%></p>
+                   <p><em>Contact : </em><%=e.getContact()%></p>
+                   <p><em>Venue : </em><%=e.getVenue()%></p>
+                   <p class="eventduration"><em>From : </em><span><%=e.getFrom()%></span><em>To : </em><span><%=e.getTill()%></span></p>
+                   <p><em>Time : </em><span><%=e.getStime()+" - "+e.getEtime()%></span></p>
+                   </details>
+                   <%
+                       }}
+                   %>
+                   
+                </div>
+            </div> 
+    </div>
+    
+    
+     <form class="planevent"  action="PlanEventServlet">
+                <h2>Plan Event</h2>
+               <div class="eventform">
+                   <input type="text" class="planevent-data" name="event" placeholder="Event">
+                   <input type="text" class="planevent-data" name="organiser" placeholder="Organizer">
+                   <textarea  placeholder="Venue" id="" cols="30" rows="4" name="venue" class="planevent-data"></textarea>
+                   <input type="mob" class="planevent-data"  name="contact" placeholder="Contact">
+                   <div class="pdate">
+                       <span >From</span>
+                       <span >To</span>
+                       <input type="date" name="from" class="pdated" >
+                       <input type="date"  name="till" class="pdated">
+                    </div>
+                       <div class="ptime">
+                        <p>Time</p>
+                        <input type="time" class="ptimed" name="stime">
+                        <input type="time" class="ptimed" name="etime">
+                       </div>
+                       
+               
+                    <div class="confirm-event">
+                        <input type="checkbox" id="planeventcheck" onchange="enableplaneventbtn()"><b>Select to confirm.</b>
+                    </div>
+                    <input type="submit" class="plan-event-btn" id="plan-event-btn" value="Continue" disabled>
+                    
+                </div>
 
 
-       
-    Events
+
+            </form>
+
+            
+
+
     
 
 </div>
@@ -118,6 +178,29 @@ Redeem
                              console.log('to maroon');
                         }
             }
+            
+            
+            
+              function enableplaneventbtn()
+            {
+                let check=document.getElementById('planeventcheck');
+                        let btn=document.getElementById('plan-event-btn');
+                        
+                        btn.disabled=!check.checked;
+                        console.log('btn is'+btn.disabled);
+                        
+                        if(btn.disabled)
+                        {
+                            console.log('to light maroon');
+                            btn.style.backgroundColor='#f36666';
+                        }
+                        else {
+                            btn.style.backgroundColor='#d94645';
+                             console.log('to maroon');
+                        }
+            }
+            
+            
             </script>
 </body>
 </html>
