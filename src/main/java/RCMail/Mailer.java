@@ -6,8 +6,7 @@
 package RCMail;
 
 import RCHelper.Helper;
-import static com.sun.javafx.animation.TickCalculation.sub;
-import static java.lang.ProcessBuilder.Redirect.to;
+import java.util.ArrayList;
 import java.util.Properties;
 import javax.mail.Session;
 import javax.mail.*;
@@ -54,9 +53,13 @@ public class Mailer {
     
     
     
-    public static boolean broadcastMail(String subject,String msg,String[]address)
+    public static boolean broadcastMail(String subject,String msg,ArrayList<String >address)
     {
          try{
+             
+             if(address==null||address.size()==0)
+                 return false;
+             
     Properties prop=new Properties();
     prop.put("mail.smtp.host","smtp.gmail.com");
     prop.put("mail.smtp.port","587");
@@ -67,10 +70,10 @@ public class Mailer {
            return new PasswordAuthentication(from,password);  
            }    
     });
-    InternetAddress to[]=new InternetAddress[address.length];
-    for(int i=0;i<address.length;i++)
+    InternetAddress to[]=new InternetAddress[address.size()];
+    for(int i=0;i<address.size();i++)
     {
-        to[i]=new InternetAddress(address[i]);
+        to[i]=new InternetAddress(address.get(i));
     }
      MimeMessage message = new MimeMessage(session);    
            message.addRecipients(Message.RecipientType.BCC,to);    

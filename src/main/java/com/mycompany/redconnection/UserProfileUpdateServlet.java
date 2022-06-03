@@ -43,6 +43,7 @@ public class UserProfileUpdateServlet extends HttpServlet {
           String state=request.getParameter("ustate");
           String country=request.getParameter("ucountry");
           String pincode=request.getParameter("upincode");
+          String notification=request.getParameter("notification");
           UserPOJO cuser=(UserPOJO)httpsess.getAttribute("loggedUser");
           if(cuser==null)
           {
@@ -71,12 +72,12 @@ public class UserProfileUpdateServlet extends HttpServlet {
           }
               
           
-          if(!fname.isEmpty()||!lname.isEmpty()||!mob.isEmpty()||!email.isEmpty()||!bgrp.isEmpty()||!rh.isEmpty()||!country.isEmpty())
+          if(!fname.isEmpty()||!lname.isEmpty()||!mob.isEmpty()||!email.isEmpty()||!bgrp.isEmpty()||!rh.isEmpty()||!country.isEmpty()||notification.equalsIgnoreCase("enable")||notification.equalsIgnoreCase("disable"))
           {
               //Not null
               UserPOJO user=new UserPOJO(fname,lname,mob,email,dob,bgrp+" "+rh,city,state,country,pincode);
               
-              String res=UserDAO.updateUserProfile(user,cuser.getEmail());
+              String res=UserDAO.updateUserProfile(user,cuser.getEmail(),notification);
               if(res.equalsIgnoreCase("Details updated successfully!"))
               { 
               Helper.setMessage(httpsess, res, "2");

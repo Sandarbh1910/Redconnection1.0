@@ -19,6 +19,8 @@
     System.out.println("Login required on user page");
     return;
     }
+    
+   
     ArrayList<BloodRequestPOJO>breqlist=null;
     ArrayList<BloodBankPOJO>banklist=null;
 String region=request.getParameter("region");

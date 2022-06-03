@@ -10,6 +10,11 @@ package RCPOJO;
  * @author sanda
  */
 public class UserPOJO {
+
+    @Override
+    public String toString() {
+        return "UserPOJO{" + "fname=" + fname + ", lname=" + lname + ", mob=" + mob + ", email=" + email + ", dob=" + dob + ", bloodgrp=" + bloodgrp + ", password=" + password + ", State=" + State + ", City=" + City + ", Country=" + Country + ", pincode=" + pincode + '}';
+    }
     private String fname;
     private String lname;
     private String mob;
@@ -22,7 +27,7 @@ public class UserPOJO {
     private String Country;
     private String pincode;
 
-    public UserPOJO(String fname, String lname, String mob, String email, String dob, String bloodgrp, String password, String State, String City, String Country, String pincode) {
+    public UserPOJO(String fname, String lname, String mob, String email, String dob, String bloodgrp, String password,String City, String State, String Country, String pincode) {
         this.fname = fname;
         this.lname = lname;
         this.mob = mob;
@@ -37,7 +42,7 @@ public class UserPOJO {
     }
     
     
-    public UserPOJO(String fname, String lname, String mob, String email, String dob, String bloodgrp, String State, String City, String Country, String pincode) {
+    public UserPOJO(String fname, String lname, String mob, String email, String dob, String bloodgrp, String City, String State, String Country, String pincode) {
         this.fname = fname;
         this.lname = lname;
         this.mob = mob;
@@ -84,10 +89,7 @@ public class UserPOJO {
 
    
 
-    @Override
-    public String toString() {
-        return "Users{" + "fname=" + fname + ", lname=" + lname + ", mob=" + mob + ", email=" + email + ", dob=" + dob + ", bloodgrp=" + bloodgrp + ", password=" + password + '}';
-    }
+  
 
     public String getDob() {
         return dob;

@@ -6,6 +6,9 @@
 package com.mycompany.redconnection;
 
 import RCDAO.BloodRequestDAO;
+import RCDAO.UserDAO;
+import RCHelper.Helper;
+import RCMail.Mailer;
 import RCPOJO.BloodRequestPOJO;
 import RCPOJO.UserPOJO;
 import java.io.IOException;
@@ -64,13 +67,16 @@ public class BloodRequestServlet extends HttpServlet {
             boolean res=BloodRequestDAO.submitRequest(breq);
             if(res)
             {
-                httpsess.setAttribute("message", "Request Submitted!");
-                httpsess.setAttribute("dispcol", "5");
+               
+                Helper.setMessage(httpsess,"Request Submitted", "2");
+                String msg=bloodgrp+" blood "+units+" unit required urgently\nInstitute address : "+institute+" "+icity+" "+istate+" "+icountry+" "+ipincode+" \n"+"Purpose : "+purpose+"\nIts hero time!\nDonate blood save lives\n-Team RedConnection";
+                Mailer.broadcastMail("Medical Emergency!", msg, UserDAO.getEmailListToNotify(bloodgrp, icity,email));
                 response.sendRedirect("user.jsp");
                 return;
             }
-            else{httpsess.setAttribute("message", "Could not submit request!!");
-                httpsess.setAttribute("dispcol", "1");
+            else{
+                Helper.setMessage(httpsess,"Could not submit request!", "1");
+               
                 response.sendRedirect("user.jsp");
                 return;
             }

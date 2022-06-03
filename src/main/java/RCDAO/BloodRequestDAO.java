@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -42,9 +43,11 @@ public class BloodRequestDAO {
     public static ArrayList<BloodRequestPOJO> loadBloodRequestByCountry(String country)
     {ArrayList<BloodRequestPOJO>breqlist=null;
          try{
+             LocalDate date =  LocalDate.now().minusDays(15);  
             Connection conn=DBConnection.getConnection();
-            PreparedStatement ps=conn.prepareStatement("select * from bloodrequest where icountry=? order by requestno desc");
+            PreparedStatement ps=conn.prepareStatement("select * from bloodrequest where icountry=? and date > ? order by requestno desc");
             ps.setString(1, country);
+            ps.setString(2, date.toString());
          
             ResultSet rs= ps.executeQuery();
             BloodRequestPOJO breq=null;
@@ -64,11 +67,13 @@ public class BloodRequestDAO {
     public static ArrayList<BloodRequestPOJO> loadBloodRequestByState(String state,String country)
     { ArrayList<BloodRequestPOJO>breqlist=null;
          try{
+             System.out.println("State in load by state "+state);
+             LocalDate date =  LocalDate.now().minusDays(15);
             Connection conn=DBConnection.getConnection();
-            PreparedStatement ps=conn.prepareStatement("select * from bloodrequest where icountry=? and istate=? order by requestno desc");
+            PreparedStatement ps=conn.prepareStatement("select * from bloodrequest where icountry=? and istate=? and date > ? order by requestno desc");
             ps.setString(1, country);
             ps.setString(2, state);
-         
+            ps.setString(3, date.toString());
             ResultSet rs= ps.executeQuery();
             BloodRequestPOJO breq=null;
            breqlist=new ArrayList<BloodRequestPOJO>();
@@ -88,11 +93,14 @@ public class BloodRequestDAO {
     public static ArrayList<BloodRequestPOJO> loadBloodRequestByCity(String city,String state,String country)
     {ArrayList<BloodRequestPOJO>breqlist=null;
          try{
+              System.out.println("State in load by state "+state+" and city "+city);
+             LocalDate date =  LocalDate.now().minusDays(15);
             Connection conn=DBConnection.getConnection();
-            PreparedStatement ps=conn.prepareStatement("select * from bloodrequest where icountry=? and istate=? and icity=? order by requestno desc");
+            PreparedStatement ps=conn.prepareStatement("select * from bloodrequest where icountry=? and istate=? and icity=? and date > ? order by requestno desc");
             ps.setString(1, country);
             ps.setString(2, state);
             ps.setString(3, city);
+            ps.setString(4, date.toString());
          
             ResultSet rs= ps.executeQuery();
             BloodRequestPOJO breq=null;
@@ -113,10 +121,11 @@ public class BloodRequestDAO {
      public static ArrayList<BloodRequestPOJO> loadBloodRequestByArea(String pincode)
     {ArrayList<BloodRequestPOJO>breqlist=null;
          try{
+             LocalDate date =  LocalDate.now().minusDays(15);
             Connection conn=DBConnection.getConnection();
-            PreparedStatement ps=conn.prepareStatement("select * from bloodrequest where ipincode=? order by requestno desc");
+            PreparedStatement ps=conn.prepareStatement("select * from bloodrequest where ipincode=? and date > ? order by requestno desc");
             ps.setString(1, pincode);
-            
+            ps.setString(2, date.toString());
          
             ResultSet rs= ps.executeQuery();
             BloodRequestPOJO breq=null;

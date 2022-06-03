@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.ArrayList;
 
 /**
  *
@@ -24,8 +25,8 @@ public class UserDAO {
         try{
             
             Connection conn=DBConnection.getConnection();
-            PreparedStatement ps=conn.prepareStatement("insert into users values (?,?,?,?,?,?,?,?,?,?,?)");
-            System.out.println(user);
+            PreparedStatement ps=conn.prepareStatement("insert into users (firstname,lastname,mob,email,dob,bloodgroup,password,city,state,country,pincode)values (?,?,?,?,?,?,?,?,?,?,?)");
+            System.out.println("user at signup"+user);
             ps.setString(1,user.getFname());
             ps.setString(2,user.getLname());
             ps.setString(3,user.getMob());
@@ -64,7 +65,7 @@ public class UserDAO {
              ResultSet rs=ps.executeQuery();
              if(rs.next())
              user=new UserPOJO(rs.getString("firstname"),rs.getString("lastname"),rs.getString("mob"),rs.getString("email"),rs.getString("dob"),rs.getString("bloodgroup"),rs.getString("password"),rs.getString("city"),rs.getString("state"),rs.getString("country"),rs.getString("pincode"));
-            
+            System.out.println("user at login "+user);
         }catch(Exception ex){ex.printStackTrace();}
          finally{return user;}
     }
@@ -185,12 +186,12 @@ public class UserDAO {
         
     }
     
-    public static String updateUserProfile(UserPOJO user,String email)
+    public static String updateUserProfile(UserPOJO user,String email,String notification)
     {
         
         try {
             Connection conn=DBConnection.getConnection();
-            PreparedStatement ps=conn.prepareStatement("update users set firstname=?,lastname=?,mob=?,email=?,dob=?,bloodgroup=?,city=?,state=?,country=?,pincode=? where email=?");
+            PreparedStatement ps=conn.prepareStatement("update users set firstname=?,lastname=?,mob=?,email=?,dob=?,bloodgroup=?,city=?,state=?,country=?,pincode=? ,notificationstatus=? where email=?");
             
           ps.setString(1, user.getFname());
             ps.setString(2,user.getLname());
@@ -202,13 +203,57 @@ public class UserDAO {
             ps.setString(8, user.getState());
             ps.setString(9, user.getCountry());
             ps.setString(10, user.getPincode());
-            ps.setString(11, email);
+            ps.setString(11, notification);
+            ps.setString(12, email);
            
              ps.executeUpdate();
              return "Details updated successfully!";
         }catch(SQLIntegrityConstraintViolationException ex){ex.printStackTrace();return "Email/Mobile already exists!";}catch(Exception ex)
         {ex.printStackTrace();return "Sorry could not update details";}
         
+    }
+    
+    
+    public static String getNotificationStatus(String email)
+    {
+         try {
+            Connection conn=DBConnection.getConnection();
+            PreparedStatement ps=conn.prepareStatement("select notificationstatus from users where email=?");
+            
+         
+            ps.setString(1, email);
+           
+             ResultSet rs=ps.executeQuery();
+             if(rs.next())
+             {
+                 return rs.getString(1);
+             }
+             return "enable";
+        }catch(Exception ex){ex.printStackTrace();return "enable";}
+    }
+    
+    
+    public static ArrayList<String> getEmailListToNotify(String bg,String city,String email)
+    {
+        try{
+        Connection conn=DBConnection.getConnection();
+            PreparedStatement ps=conn.prepareStatement("select distinct(email) from users where bloodgroup=? and city=? and notificationstatus='enable' and not email=?");
+            System.out.println("bg in getting list "+bg);
+          ps.setString(1, bg);
+            ps.setString(2,city);
+            ps.setString(3, email);
+            ResultSet rs=ps.executeQuery();
+            ArrayList<String> list=new ArrayList<String>();
+            while(rs.next())
+            {
+                list.add(rs.getString(1));
+            }
+            
+            return list;
+        
+        
+        }catch(Exception ex)
+        {ex.printStackTrace();return null;}
     }
     
      
