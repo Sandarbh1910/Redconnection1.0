@@ -50,6 +50,7 @@
 <div id="verify-interface" class="interface">
     
   <form  method="POST" action="VerifyDonorAtInstituteServlet" id="verifydonor-form">
+      <img src="Icons/verify2.png">
             <h2>Verify Donor</h2>
             <div class="data">
                 <input type="email" name="donoremail" placeholder="Email" required class="verify-data">
@@ -65,6 +66,23 @@
 <div id="redeemcoupon-interface" class="interface" >
    
 Redeem
+<form class="redeemform"  action="RedeemHealthCouponServlet">
+    <img src="Icons/redeemcoupon.png">
+                <h2>Redeem Health Coupon</h2>
+               <div class="redeem">
+                   <input type="text" class="redeem-input-data" name="email" placeholder="Email">
+                   <input type="text" class="redeem-input-data" name="ccode" placeholder="Couponcode">
+               
+                    <div class="confirm-redeem">
+                        <input type="checkbox" id="redeemcouponcheck" onchange="enablebtn()"><b>Select to confirm.</b>
+                    </div>
+                    
+                    
+                </div>
+
+<input type="submit" class="redeem-coupon-btn" id="redeem-coupon-btn" value="Continue" disabled>
+
+            </form>
 </div>
 
 <input type="radio" name="switch-interface" id="event-interface-radio" class="switch-interface">
@@ -79,5 +97,27 @@ Redeem
 
 <footer> <div class="copyright">Copyright &copy;2022 Red Connections | Sandarbh Taran .All rights reserved.</div></footer>
     </main>
+    
+    
+        <script>
+            function enablebtn()
+            {
+                let check=document.getElementById('redeemcouponcheck');
+                        let btn=document.getElementById('redeem-coupon-btn');
+                        
+                        btn.disabled=!check.checked;
+                        console.log('btn is'+btn.disabled);
+                        
+                        if(btn.disabled)
+                        {
+                            console.log('to light maroon');
+                            btn.style.backgroundColor='#f36666';
+                        }
+                        else {
+                            btn.style.backgroundColor='#d94645';
+                             console.log('to maroon');
+                        }
+            }
+            </script>
 </body>
 </html>

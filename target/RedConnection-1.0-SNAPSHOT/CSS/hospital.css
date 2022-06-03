@@ -254,8 +254,80 @@ padding:5px;
 
 #redeemcoupon-interface-radio:checked ~ #redeemcoupon-interface{
     display: flex;
+     justify-content: space-between;
+    flex-wrap: wrap;
+    overflow-x: hidden;
 }
 
+
+
+
+.redeemform{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-width:300px;
+    width:20%;
+    border:1px solid #e1e1e2;
+    min-height: 300px;
+    border-radius: 5px;
+    padding: 10px;
+    margin:auto;
+    
+/*    border:1px solid #e1e1e2;
+    padding:20px;
+    min-width: 250px;
+    width:25vw;*/
+}
+
+.redeem{
+     width:95%;
+    min-width: 260px;
+}
+
+.redeem-input-data{
+    padding:5px;
+    border-radius: 5px;
+    border:1px solid #e1e1e2;
+    margin-top:10px;
+    resize: none;
+    width:98%;
+}
+
+.confirm-redeem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:5px;
+    width:100%;
+    
+}
+
+#redeemcouponcheck{
+    margin-right: 5px;
+}
+
+.redeem-coupon-btn{
+    margin-left:auto;
+    margin-right:auto;
+     padding:5px;
+    border-radius: 5px;
+    border:1px solid #e1e1e2;
+    margin-top:10px;
+    resize: none;
+    width:80%;
+     background-color: #f36666;
+     color:white;
+}
+
+
+
+
+
+
+/*Event Interface*/
 #event-interface-radio:checked ~ #event-interface{
     display: flex;
     flex-direction: column;

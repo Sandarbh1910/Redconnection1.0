@@ -68,6 +68,10 @@
         <servlet-name>InstituteProfileUpdateServlet</servlet-name>
         <servlet-class>com.mycompany.redconnection.InstituteProfileUpdateServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RedeemHealthCouponServlet</servlet-name>
+        <servlet-class>com.mycompany.redconnection.RedeemHealthCouponServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RCContactServlet</servlet-name>
         <url-pattern>/RCContactServlet</url-pattern>
@@ -135,6 +139,10 @@
     <servlet-mapping>
         <servlet-name>InstituteProfileUpdateServlet</servlet-name>
         <url-pattern>/InstituteProfileUpdateServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RedeemHealthCouponServlet</servlet-name>
+        <url-pattern>/RedeemHealthCouponServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

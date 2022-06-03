@@ -23,7 +23,7 @@ public class HealthCouponsDAO {
     {
         try{
             Connection conn=DBConnection.getConnection();
-            PreparedStatement ps=conn.prepareStatement("insert into healthcoupons (user,vissuedate,ctype) values(?,?,?)");
+            PreparedStatement ps=conn.prepareStatement("insert into healthcoupons (user,cissuedate,ctype) values(?,?,?)");
             ps.setString(1,email);
             ps.setString(2,Helper.todaysDate("yyyy/MM/dd"));
             ps.setString(3, coupontype);
@@ -59,4 +59,18 @@ public class HealthCouponsDAO {
         return clist;}
     }
     
+    
+    public static boolean redeemCoupon(String email,String couponcode)
+    {
+        try{
+            Connection conn=DBConnection.getConnection();
+            PreparedStatement ps=conn.prepareStatement("update healthcoupons set cstatus='used' where user=? and ccode=? and cstatus='active'");
+            ps.setString(1,email);
+            ps.setInt(2,Integer.parseInt(couponcode));
+            int res=ps.executeUpdate();
+            if(res!=0)
+            return true;
+        }catch(Exception ex){ex.printStackTrace();return false;}
+        return false;
+    }
 }
