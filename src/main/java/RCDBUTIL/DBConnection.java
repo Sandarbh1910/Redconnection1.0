@@ -18,7 +18,7 @@ public class DBConnection {
     {
        try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/redconnection","root","Sandarbh19");
+        Connection conn=DriverManager.getConnection("jdbc:mysql://us-cdbr-east-05.cleardb.net:3306/redconnection","b76a6fae6c3219","b5571c88");
            System.out.println(conn+"in dao");
            return conn;
        }catch(Exception ex)
