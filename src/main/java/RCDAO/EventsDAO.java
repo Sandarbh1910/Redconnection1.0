@@ -71,6 +71,37 @@ public class EventsDAO {
     }
     
     
+    
+    
+     public static ArrayList<EventsPOJO>getEvents()
+    {
+        ArrayList<EventsPOJO> elist=null;
+         try {
+             LocalDate date =  LocalDate.now();
+            
+            Connection conn = DBConnection.getConnection();
+            
+            PreparedStatement ps = conn.prepareStatement("select * from events where  edate>=?");
+           
+            ps.setString(1, date.toString());
+           EventsPOJO e=null;
+            ResultSet rs=ps.executeQuery();
+             
+             elist=new ArrayList<EventsPOJO>();
+            while(rs.next())
+            {
+                System.out.println("Entered loop");
+                e=new EventsPOJO(rs.getString("eventname"),rs.getString("organiser"),rs.getString("venue"),rs.getString("contact"),rs.getString("sdate"),rs.getString("edate"),rs.getString("stime"),rs.getString("etime"),rs.getString("planneruser"),rs.getInt("eventid"));
+                elist.add(e);
+            }
+            return elist;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return elist;
+        }
+    }
+    
+    
     public static boolean deleteEvent(String eid,String email )
     {
         try{

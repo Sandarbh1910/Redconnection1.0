@@ -1,3 +1,5 @@
+<%@page import="RCPOJO.EventsPOJO"%>
+<%@page import="RCDAO.EventsDAO"%>
 <%@page import="RCHelper.Helper"%>
 <%@page import="RCPOJO.HealthCouponsPOJO"%>
 <%@page import="RCPOJO.HealthCouponsPOJO"%>
@@ -110,6 +112,7 @@ ArrayList<HealthCouponsPOJO> couponlist=HealthCouponsDAO.getUserCouponList(user.
     <h3>Requests</h3>
 <ul class="request-list">
     <%
+        if(breqlist!=null){
         for(BloodRequestPOJO breq:breqlist)
         {
             %>
@@ -123,7 +126,7 @@ ArrayList<HealthCouponsPOJO> couponlist=HealthCouponsDAO.getUserCouponList(user.
     </details>
 </li>
     <%
-        }
+        }}
     %>
 
 
@@ -134,6 +137,8 @@ ArrayList<HealthCouponsPOJO> couponlist=HealthCouponsDAO.getUserCouponList(user.
 <ul class="bblist">
     <h3 class="info-title">Blood Banks</h3>
     <%
+        
+        if(banklist!=null){
         for(BloodBankPOJO b:banklist)
         {
             %>
@@ -163,66 +168,34 @@ ArrayList<HealthCouponsPOJO> couponlist=HealthCouponsDAO.getUserCouponList(user.
     </li>
     
     <%
-        }
+        }}
     %>
     
 </ul>
 <ul class="event-list">
     <h3 class="info-title">Events</h3>
+     <%
+                        ArrayList<EventsPOJO>elist=EventsDAO.getEvents();
+                        System.out.println("Events "+elist);
+                        if(elist!=null)
+                        {
+                         for(EventsPOJO e:elist)
+                         {
+                    %>
     <li class="event">
-        <details>
-            <summary class="event-name">Red Line</summary>
-            <div class="event-address">Address</div>
-            <div class="event-contact">Mobile</div>
-            <div class="date"><span class="from-date">2/10/2022</span>&nbsp;-&nbsp;<span class="to-date">5/10/2022</span></div>
-            </details>
-        </details>
+        <details class="plannedevent">
+                    <summary class="event"><%=e.getEvent()%> </summary>
+                   <p><em>Organized by : </em><%=e.getOrganiser()%></p>
+                   <p><em>Contact : </em><%=e.getContact()%></p>
+                   <p><em>Venue : </em><%=e.getVenue()%></p>
+                   <p class="eventduration"><em>From : </em><span><%=e.getFrom()%></span><em>To : </em><span><%=e.getTill()%></span></p>
+                   <p><em>Time : </em><span><%=e.getStime()+" - "+e.getEtime()%></span></p>
+                   </details>
     </li>
-    <li class="event">
-        <details>
-            <summary class="event-name">Red Line</summary>
-            <div class="event-address">Address</div>
-            <div class="event-contact">Mobile</div>
-            <div class="date"><span class="from-date">2/10/2022</span>&nbsp;-&nbsp;<span class="to-date">5/10/2022</span></div>
-            </details>
-        </details>
-    </li>
-    <li class="event">
-        <details>
-            <summary class="event-name">Red Line</summary>
-            <div class="event-address">Address</div>
-            <div class="event-contact">Mobile</div>
-            <div class="date"><span class="from-date">2/10/2022</span>&nbsp;-&nbsp;<span class="to-date">5/10/2022</span></div>
-            </details>
-        </details>
-    </li>
-    <li class="event">
-        <details>
-            <summary class="event-name">Red Line</summary>
-            <div class="event-address">Address</div>
-            <div class="event-contact">Mobile</div>
-            <div class="date"><span class="from-date">2/10/2022</span>&nbsp;-&nbsp;<span class="to-date">5/10/2022</span></div>
-            </details>
-        </details>
-    </li>
-    <li class="event">
-        <details>
-            <summary class="event-name">Red Line</summary>
-            <div class="event-address">Address</div>
-            <div class="event-contact">Mobile</div>
-            <div class="date"><span class="from-date">2/10/2022</span>&nbsp;-&nbsp;<span class="to-date">5/10/2022</span></div>
-            </details>
-        </details>
-    </li>
-    <li class="event">
-        <details>
-            <summary class="event-name">Red Line</summary>
-            <div class="event-address">Address</div>
-            <div class="event-contact">Mobile</div>
-            <div class="date"><span class="from-date">2/10/2022</span>&nbsp;-&nbsp;<span class="to-date">5/10/2022</span></div>
-            </details>
-        </details>
-    </li>
+     <%
+                       }}
+                   %>
+   
 </ul>
 
 </div>
@@ -292,6 +265,7 @@ ArrayList<HealthCouponsPOJO> couponlist=HealthCouponsDAO.getUserCouponList(user.
         
         <%
             System.out.println("couponlist"+ couponlist);
+            if(couponlist!=null){
         for(HealthCouponsPOJO h:couponlist)
         {
         
@@ -308,7 +282,7 @@ ArrayList<HealthCouponsPOJO> couponlist=HealthCouponsDAO.getUserCouponList(user.
         </div>
        <%
         
-        }
+        }}
         %>
     </div>
     
