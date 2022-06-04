@@ -21,7 +21,13 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
-        
+        <!-- https://mvnrepository.com/artifact/com.heroku.api/heroku-api -->
+<dependency>
+    <groupId>com.heroku.api</groupId>
+    <artifactId>heroku-api</artifactId>
+    <version>0.45</version>
+</dependency>
+
         <!-- https://mvnrepository.com/artifact/com.heroku.sdk/heroku-deploy -->
 <dependency>
     <groupId>com.heroku.sdk</groupId>
@@ -90,6 +96,18 @@
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.0.1</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals><goal>copy-dependencies</goal></goals>
                     </execution>
                 </executions>
             </plugin>

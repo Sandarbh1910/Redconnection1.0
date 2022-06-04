@@ -2,6 +2,7 @@ E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\InstitutePro
 E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\VerifyDonorAtInstituteServlet.java
 E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\BloodDonationResponseServlet.java
 E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\CreatePasswordServlet.java
+E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\DeleteEventServlet.java
 E:\Projects\RedConnection\src\main\java\RCDAO\BloodRequestDAO.java
 E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\RedeemHealthCouponServlet.java
 E:\Projects\RedConnection\src\main\java\RCDAO\BloodDonationResponseDAO.java
@@ -14,6 +15,7 @@ E:\Projects\RedConnection\src\main\java\RCPOJO\UserPOJO.java
 E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\BuyHealthCoupons.java
 E:\Projects\RedConnection\src\main\java\RCMail\Mailer.java
 E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\InstituteLoginServlet.java
+E:\Projects\RedConnection\src\main\java\RCDAO\EventsDAO.java
 E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\VerificationServlet.java
 E:\Projects\RedConnection\src\main\java\RCDAO\UserDAO.java
 E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\InstituteSignupServlet.java
@@ -23,12 +25,14 @@ E:\Projects\RedConnection\src\main\java\RCPOJO\HealthCouponsPOJO.java
 E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\LoginServlet.java
 E:\Projects\RedConnection\src\main\java\RCDAO\BloodBankDAO.java
 E:\Projects\RedConnection\src\main\java\RCDBUTIL\DBConnection.java
+E:\Projects\RedConnection\src\main\java\RCPOJO\EventsPOJO.java
 E:\Projects\RedConnection\src\main\java\RCDAO\HealthCouponsDAO.java
 E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\UserSignupServlet.java
 E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\PasswordAssistanceServlet.java
 E:\Projects\RedConnection\src\main\java\RCPOJO\InstitutePOJO.java
 E:\Projects\RedConnection\src\main\java\RCHelper\Helper.java
 E:\Projects\RedConnection\src\main\java\RCPOJO\BloodBankStockPOJO.java
+E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\PlanEventServlet.java
 E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\UpdateBloodBankStockServlet.java
 E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\LogoutServlet.java
 E:\Projects\RedConnection\src\main\java\com\mycompany\redconnection\UserProfileUpdateServlet.java
