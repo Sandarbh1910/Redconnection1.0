@@ -24,7 +24,7 @@ public class Mailer {
     
     
     public static boolean sendMail(String subject,String msg,String to)
-    {System.out.println("to : "+to);
+    {System.out.println("to send mail : "+to);
             try{
     Properties prop=new Properties();
     prop.put("mail.smtp.host","smtp.gmail.com");
