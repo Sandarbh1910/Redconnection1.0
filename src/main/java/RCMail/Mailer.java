@@ -20,7 +20,7 @@ import javax.mail.internet.MimeMessage;
 public class Mailer {
     
     final static String from="demosandarbh@gmail.com";
-    final static String password="sandarbhDEMO@2022";
+    final static String password="ttvgadvdffhlinxm";
     
     
     public static boolean sendMail(String subject,String msg,String to)
