@@ -18,7 +18,7 @@ public class DBConnection {
     {
        try{
             Class.forName("com.mysql.jdbc.Driver");
-        Connection conn=DriverManager.getConnection("jdbc:mysql://us-cdbr-east-06.cleardb.net:3306/heroku_51c80e373ad78d4","b22a8494d4b3db","86584d73");
+        Connection conn=DriverManager.getConnection("jdbc:mysql://us-cdbr-east-05.cleardb.net:3306/heroku_51c80e373ad78d4","ba10ce866b6bc1","6fe390c7");
            System.out.println(conn+"in dao");
            return conn;
        }catch(Exception ex)
