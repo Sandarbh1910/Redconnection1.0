@@ -42,7 +42,7 @@ public class RCContactServlet extends HttpServlet {
             StringBuilder sb=new StringBuilder(cname+"\n"+cmob+"\n"+cemail+"\n"+msg);
             
             if(reason.equalsIgnoreCase("Suggestion"))
-           Mailer.sendMail("Suggestion", sb.toString(),"demosandarbh@gmail.com");
+           Mailer.sendMail("Suggestion", sb.toString(),"demosandarbh@gmail.com"); 
             
             else
                  Mailer.sendMail("Problem", sb.toString(),"demosandarbh@gmail.com");
