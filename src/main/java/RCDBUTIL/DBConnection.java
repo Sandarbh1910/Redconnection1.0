@@ -18,7 +18,8 @@ public class DBConnection {
     {
        try{
             Class.forName("com.mysql.jdbc.Driver");
-         conn=DriverManager.getConnection("jdbc:mysql://us-cdbr-east-05.cleardb.net:3306/heroku_ecc5891f6c0f438","ba10ce866b6bc1","6fe390c7");
+        // conn=DriverManager.getConnection("jdbc:mysql://us-cdbr-east-05.cleardb.net:3306/heroku_ecc5891f6c0f438","ba10ce866b6bc1","6fe390c7");
+         conn=DriverManager.getConnection("jdbc:mysql://fl1vtisb2r40unlp:n0mdivap18fwxyjt@t07cxyau6qg7o5nz.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/lc2f1w92i8iy3ixm","fl1vtisb2r40unlp","n0mdivap18fwxyjt");
            System.out.println(conn+"in dao");
            return conn;
        }catch(Exception ex)
