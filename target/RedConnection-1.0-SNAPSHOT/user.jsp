@@ -137,7 +137,7 @@ ArrayList<HealthCouponsPOJO> couponlist=HealthCouponsDAO.getUserCouponList(user.
 <ul class="bblist">
     <h3 class="info-title">Blood Banks</h3>
     <%
-        
+        System.out.println(banklist);
         if(banklist!=null){
         for(BloodBankPOJO b:banklist)
         {
