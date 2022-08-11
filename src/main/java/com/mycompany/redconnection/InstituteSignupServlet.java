@@ -94,7 +94,9 @@ public class InstituteSignupServlet extends HttpServlet {
            {
                if(Validations.passwordValidation(password))
                {
-               InstitutePOJO institute=new InstitutePOJO(name,email,mob,password,city,state,country,pincode,address,instype);
+               InstitutePOJO institute=new InstitutePOJO(name,email,mob,password,address,state,city,country,pincode,instype);
+               System.out.println("city "+city+" country= "+country);
+               System.out.println("ins obj = "+institute);
                String res=InstituteDAO.signupInstitute(institute);
               
                if(res.equalsIgnoreCase("Registration successful"))
